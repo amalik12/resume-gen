@@ -1,0 +1,12 @@
+.PageHeader {
+    padding: 15px 30px;
+    border-bottom: 1px solid #afafaf;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-title {
+    font-size: 27px;
+    font-weight: 600;
+}
