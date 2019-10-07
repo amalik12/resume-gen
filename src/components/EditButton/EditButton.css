@@ -1,0 +1,17 @@
+.edit-icon {
+    color: #3065c7;
+    font-size: 18px;
+    opacity: 0;
+    transition: 0.2s;
+    padding: 15px;
+    border-radius: 50%;
+}
+
+.edit-icon:hover {
+    background: #eee;
+    opacity: 1;
+}
+
+.edit-icon.active {
+    background: rgb(212, 212, 212);
+}

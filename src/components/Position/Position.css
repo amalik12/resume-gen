@@ -11,6 +11,7 @@
 .position-info {
     margin-bottom: 10px;
 }
+
 .position-title {
     font-size: 24px;
     font-weight: 500;
@@ -49,18 +50,8 @@
     font-size: 18px;
 }
 
-.edit-icon {
-    color: #3065c7;
+.position-edit-button {
     position: absolute;
     top: 25px;
     right: 0px;
-    font-size: 18px;
-    opacity: 0;
-    transition: 0.2s;
-    padding: 15px;
-    border-radius: 50%;
-}
-
-.edit-icon:hover {
-    background: #eee;
 }

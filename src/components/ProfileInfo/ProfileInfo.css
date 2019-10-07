@@ -2,6 +2,10 @@
     text-align: center;
 }
 
+.ProfileInfo:hover .edit-icon {
+    opacity: 1;
+}
+
 .profile-links {
     display: flex;
     flex-wrap: wrap;
@@ -31,4 +35,10 @@
 
 .profile-name {
     margin-bottom: 25px;
+    display: inline-block;
+}
+
+.profile-edit-button {
+    display: inline-block;
+    vertical-align: text-bottom;
 }

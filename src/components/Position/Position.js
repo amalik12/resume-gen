@@ -1,6 +1,7 @@
 import React from 'react'
 import './Position.css'
 import Tag from '../Tag';
+import EditButton from '../EditButton';
 
 class Position extends React.Component {
     constructor(props) {
@@ -8,17 +9,12 @@ class Position extends React.Component {
         this.state = { hover: false };
     }
 
-    // toggleHover() {
-    //     this.setState({ hover: !this.state.hover });
-    // }
-
-    disableHover() {}
     render() {
         const { title, company, startDate, endDate, tags, description } = this.props;
         let descItems = description.split('\n')
         return (
             <div className="Position">
-                <i class="edit-icon fas fa-pen"></i>
+                <EditButton className="position-edit-button" />
                 <div className="position-info">
                 <span className="position-title">{title} at </span><span className="position-company">{company}</span>
                 </div>
