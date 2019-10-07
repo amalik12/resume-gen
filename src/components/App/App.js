@@ -1,6 +1,6 @@
 import React from 'react';
-import PageHeader from './PageHeader';
-import Profile from './Profile';
+import PageHeader from '../PageHeader/PageHeader';
+import Profile from '../Profile/Profile';
 import './App.css';
 
 function App() {

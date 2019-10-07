@@ -1,0 +1,12 @@
+.Category:nth-child(2n-1) {
+    margin-right: 45px;
+}
+
+.category-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #3065c7;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #3065c7;
+}

@@ -1,0 +1,66 @@
+.Position {
+    position: relative;
+    transition: 0.2s;
+    padding-top: 35px;
+}
+
+.Position:hover .edit-icon {
+    opacity: 1;
+}
+
+.position-info {
+    margin-bottom: 10px;
+}
+.position-title {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.position-company {
+    font-size: 24px;
+    font-weight: 700;
+    color: #3065c7;
+}
+
+.position-dates {
+    font-size: 18px;
+    font-weight: 300;
+    color: #8a8a8a;
+    margin-bottom: 15px;
+}
+
+.position-description-container {
+    list-style-type: none;
+    padding-left: 25px;
+}
+
+.position-description::before {
+	content: "";
+	display: inline-block;
+	margin-right: 15px;
+	margin-bottom: 2px;
+	height: 10px;
+	width: 10px;
+	background: #3065c7;
+	margin-left: -25px;
+}
+
+.position-description {
+    font-size: 18px;
+}
+
+.edit-icon {
+    color: #3065c7;
+    position: absolute;
+    top: 25px;
+    right: 0px;
+    font-size: 18px;
+    opacity: 0;
+    transition: 0.2s;
+    padding: 15px;
+    border-radius: 50%;
+}
+
+.edit-icon:hover {
+    background: #eee;
+}
