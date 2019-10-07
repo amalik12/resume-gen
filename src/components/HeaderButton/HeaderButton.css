@@ -5,7 +5,15 @@
     padding: 14px 30px;
     display: flex;
     align-items: center;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.3s;
 }
+
+.HeaderButton:hover {
+    background: #4d84eb;
+}
+
 
 .header-button-text {
     font-size: 19px;
