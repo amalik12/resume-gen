@@ -1,3 +1,7 @@
+.header-button-container {
+    position: relative;
+}
+
 .HeaderButton {
     color: white;
     background: #3065c7;
@@ -14,11 +18,9 @@
     background: #4d84eb;
 }
 
-
 .header-button-text {
     font-size: 19px;
     font-weight: 500;
-    margin-right: 10px;
 }
 
 .dropdown-arrow {
