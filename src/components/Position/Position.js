@@ -19,9 +19,9 @@ class Position extends React.Component {
                 <span className="position-title">{title} at </span><span className="position-company">{company}</span>
                 </div>
                 <div className="position-dates">{startDate + " - " + endDate}</div>
-                {tags.map((item) => <Tag>{item}</Tag>)}
+                {tags.map((item) => <Tag key={item}>{item}</Tag>)}
                 <ul className="position-description-container">
-                    {descItems.map((item) => <li className="position-description">{item}</li>)}
+                    {descItems.map((item, index) => <li key={index} className="position-description">{item}</li>)}
                 </ul>
             </div>
         )

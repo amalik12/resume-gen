@@ -13,18 +13,18 @@
 }
 
 .position-title {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 500;
 }
 
 .position-company {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
     color: #3065c7;
 }
 
 .position-dates {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 300;
     color: #8a8a8a;
     margin-bottom: 15px;
@@ -47,7 +47,7 @@
 }
 
 .position-description {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .position-edit-button {
