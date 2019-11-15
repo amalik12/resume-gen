@@ -8,11 +8,15 @@ let ProfileDropdown = ({items, select}) => {
         setOpacity(1);
         return () => setOpacity(0);
     }, [])
-    
+
+    let itemProps = {
+        edit: false
+    }
+
     return (
         <div className="ProfileDropdown" style={{opacity: opacity}}>
             <ul className="profile-dropdown-list">
-                {items.map((item) => <li key={item} onClick={e => select(item)} className="profile-dropdown-item">{item}</li>)}
+                {items.map((item) => <li key={item[0]} onClick={e => select(item[1], itemProps)} className="profile-dropdown-item">{item[0]}</li>)}
             </ul>
         </div>
     )

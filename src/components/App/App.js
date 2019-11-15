@@ -1,14 +1,19 @@
 import React from 'react';
-import PageHeader from '../PageHeader/PageHeader';
-import Profile from '../Profile/Profile';
+import PageHeader from '../PageHeader';
+import Profile from '../Profile';
 import './App.css';
+import ModalProvider from '../ModalProvider/ModalProvider';
+import ModalRoot from '../ModalRoot/ModalRoot';
 
 function App() {
   return (
-    <div className="App">
-      <PageHeader title="My Profile"/>
-      <Profile/>
-    </div>
+    <ModalProvider>
+      <div className="App">
+        <ModalRoot/>
+        <PageHeader title="My Profile"/>
+        <Profile/>
+      </div>
+    </ModalProvider>
   );
 }
 

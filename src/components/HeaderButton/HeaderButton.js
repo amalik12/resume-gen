@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 import './HeaderButton.css'
 import ProfileDropdown from "../ProfileDropdown";
+import { ModalContext } from "../ModalProvider/ModalProvider";
+import ExperienceModal from "../ExperienceModal";
 
 function useOutsideClick(ref, open, setOpen) {
     useEffect(() => {
@@ -21,17 +23,21 @@ function useOutsideClick(ref, open, setOpen) {
     }, [open, setOpen, ref]);
 }
 
-let HeaderButton = ({ name, children }) => {
+const ModalConsumer = ModalContext.Consumer;
+
+let HeaderButton = ({ name }) => {
     const [open, setOpen] = useState(false);
     const wrapperRef = useRef(null);
     useOutsideClick(wrapperRef, open, setOpen);
     return (
-        <div ref={wrapperRef} className="header-button-container">
+        <ModalConsumer>
+        { ({showModal}) => (<div ref={wrapperRef} className="header-button-container">
             <div  className="HeaderButton" onClick={e => setOpen(!open)}>
                 <span className="header-button-text">{name}</span>
             </div>
-            {open && <ProfileDropdown items={['Experience', 'Education', 'Projects']} />}
-        </div>
+            {open && <ProfileDropdown items={[['Experience', ExperienceModal], ['Education', null], ['Projects', null]]} select={showModal}/>}
+        </div>)}
+        </ModalConsumer>
     )
 }
 
