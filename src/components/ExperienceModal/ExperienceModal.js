@@ -3,6 +3,7 @@ import FormModal from '../FormModal';
 import TextField from '../TextField';
 import { ModalContext } from '../ModalProvider/ModalProvider';
 import SelectField from '../SelectField/SelectField';
+import CheckField from '../CheckField/CheckField';
 
 const ModalConsumer = ModalContext.Consumer;
 
@@ -19,6 +20,12 @@ function useSelect(name, id = name) {
     return [value, input];
 }
 
+function useCheck(desc) {
+    const [value, setValue] = useState(false);
+    const input = <CheckField desc={desc} value={value} handleChange={e => setValue(e.target.checked)} />
+    return [value, input];
+}
+
 let ExperienceModal = ({edit}) => {
     const [company, companyInput] = useInput("Company name");
     const [title, titleInput] = useInput("Title");
@@ -26,6 +33,7 @@ let ExperienceModal = ({edit}) => {
     const [startYear, startYearInput] = useInput("Year", "start-year");
     const [endMonth, endMonthInput] = useSelect("End date");
     const [endYear, endYearInput] = useInput("Year", "end-year");
+    const [current, currentInput] = useCheck("I'm currently working here");
 
     return (
         <ModalConsumer>
@@ -41,6 +49,9 @@ let ExperienceModal = ({edit}) => {
                     <div className="form-divider"/>
                     {endMonthInput}
                     {endYearInput}
+                </div>
+                <div className="form-row">
+                {currentInput}
                 </div>
             </FormModal>)
         }

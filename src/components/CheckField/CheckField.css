@@ -1,0 +1,49 @@
+.CheckField {
+    font-weight: 500;
+    font-size: 15px;
+    color: #2d3d7d;
+    display: flex;
+    position: relative;
+}
+
+.checkfield-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid rgb(176, 176, 176);
+    border-radius: 4px;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    transition: border-color 0.3s;
+    outline: none;
+}
+
+.checkfield-input:hover, .checkfield-input:active, .checkfield-input:focus {
+    border-color: #3065c7;
+}
+
+.checkfield-check {
+    display: none;
+}
+
+.checkfield-input:checked {
+    background: #3065c7;
+    border: 1px solid #3065c7;
+}
+
+.checkfield-input:checked ~ .checkfield-check{
+    display: inline-block;
+    color: white;
+    position: absolute;
+    font-size: 12px;
+    left: 6px;
+    top: 5px;
+}
+
+.checkfield-label {
+    -webkit-user-select: none;        
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
