@@ -4,6 +4,10 @@
   text-align: left;
 }
 
+.textfield.disabled {
+  opacity: 0.5;
+}
+
 .textfield.inline {
   display: inline-block;
   margin-right: 20px;

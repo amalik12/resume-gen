@@ -5,6 +5,10 @@
     flex-basis: 0;
 }
 
+.SelectField.disabled {
+    opacity: 0.5;
+}
+
 .selectfield-select {
     display: block;
     border-radius: 7px;
@@ -13,6 +17,7 @@
 	-webkit-appearance: none;
     appearance: none;
     box-sizing: border-box;
+    outline: none;
     padding: 13px 15px;
     background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%2214px%22%20height%3D%228px%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20%20fill%3D%22rgb%28158%2C%20158%2C%20158%29%22%20d%3D%22M7.000%2C7.541%20L0.503%2C0.459%20L13.497%2C0.459%20L7.000%2C7.541%20Z%22%2F%3E%3C%2Fsvg%3E') 88% no-repeat #eceef2;
     background-size: 14px;
@@ -32,7 +37,11 @@
 }
 
 .selectfield-label {
-  color: #2d3d7d;
-  font-size: 15px;
-  font-weight: 500;
+    color: #2d3d7d;
+    font-size: 15px;
+    font-weight: 500;
+    -webkit-user-select: none;        
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

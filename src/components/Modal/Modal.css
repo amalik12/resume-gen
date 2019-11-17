@@ -28,7 +28,7 @@
 }
 
 .modal-header {
-  padding: 20px;
+  padding: 25px;
   background: white;
   margin-bottom: -1px;
 }
@@ -38,7 +38,7 @@
 }
 
 .modal-body {
-  padding: 20px;
+  padding: 25px;
   overflow: auto;
   background: white;
   text-align: center;
