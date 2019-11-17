@@ -7,7 +7,7 @@ const ModalConsumer = ModalContext.Consumer;
 
 function useInput(name) {
     const [value, setValue] = useState("");
-    const input = <TextField label={name} value={value} handleChange={e => setValue(e.target.value)} />
+    const input = <TextField label={name} value={value} inline={true} handleChange={e => setValue(e.target.value)} />
     return [value, input];
 }
 
@@ -19,8 +19,10 @@ let ExperienceModal = ({edit}) => {
         <ModalConsumer>
         {({isOpen}) =>
             (<FormModal title={(edit ? "Edit" : "Add") + " Experience"} showModal={isOpen} loading={false} enabled={true}>
-                {companyInput}
-                {titleInput}
+                <div className="form-row">
+                    {companyInput}
+                    {titleInput}
+                </div>
             </FormModal>)
         }
         </ModalConsumer>
