@@ -1,0 +1,40 @@
+.textbox {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.textbox-input {
+    background: #eceef2;
+    outline: none;
+    resize: none;
+    border: 2px solid #eceef2;
+    border-radius: 7px;
+    padding: 13px 20px;
+    margin-top: 12px;
+    width: 100%;
+    height: 200px;
+    color: #272727;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+.textbox-input:focus {
+    border-color: #3065c7;
+}
+
+.textbox-label {
+    pointer-events: none;
+    user-select: none;
+    color: #2d3d7d;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.textbox-desc {
+    float: right;
+    font-size: 14px;
+    font-weight: 400;
+    color: #8f9197;
+}

@@ -9,6 +9,7 @@
     padding: 6px 12px;
     margin-right: 15px;
     margin-bottom: 12px;
+    transition: 0.3s;
 }
 
 .Tag.clickable {
@@ -16,7 +17,7 @@
 }
 
 .Tag.clickable:hover {
-    color: #6e99e7;
+    background: #f3f7ff;
 }
 
 .tag-close {

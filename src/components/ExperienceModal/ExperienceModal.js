@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import FormModal from '../FormModal';
 import TextField from '../TextField';
 import { ModalContext } from '../ModalProvider/ModalProvider';
-import SelectField from '../SelectField/SelectField';
-import CheckField from '../CheckField/CheckField';
-import TagInput from '../TagInput/TagInput';
+import SelectField from '../SelectField';
+import CheckField from '../CheckField';
+import TagInput from '../TagInput';
+import TextBox from '../TextBox';
 
 const ModalConsumer = ModalContext.Consumer;
 
@@ -37,6 +38,7 @@ let ExperienceModal = ({edit}) => {
     const [endYear, endYearInput] = useInput("Year", "end-year", current);
     
     const [tags, setTags] = useState([])
+    const [description, setDesc] = useState("")
 
     return (
         <ModalConsumer>
@@ -56,7 +58,8 @@ let ExperienceModal = ({edit}) => {
                 <div className="form-row">
                     {currentInput}
                 </div>
-                    <TagInput tags={tags} desc="Separate skils with commas" addTag={(tag) => setTags([...tags, tag])} popTag={(index) => {let newArray = [...tags]; newArray.splice(index, 1); setTags(newArray)}}/>
+                <TagInput tags={tags} desc="Separate skils with commas" addTag={(tag) => setTags([...tags, tag])} popTag={(index) => {let newArray = [...tags]; newArray.splice(index, 1); setTags(newArray)}}/>
+                <TextBox label="Description" desc="Each line break will be bulleted separately" value={description} id="description" area={true} handleChange={e => setDesc(e.target.value)} />
             </FormModal>)
         }
         </ModalConsumer>
