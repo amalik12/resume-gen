@@ -9,7 +9,7 @@ let Button = (props) => {
 }
 
 Button.defaultProps = {
-    label: 'Submit',
+    label: 'Save',
     enabled: true,
     buttonStyle: 'primary'
 };

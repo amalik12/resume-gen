@@ -60,5 +60,6 @@
 
 .modal-footer {
   display: flex;
-  overflow: hidden;
+  background: #e0e5ef;
+  padding: 25px;
 }

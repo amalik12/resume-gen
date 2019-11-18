@@ -2,19 +2,18 @@
   text-align: center;
   border: none;
   display: inline-block;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: white;
-  font-size: 20px;
-  padding: 12px 30px;
-  border-radius: 4px;
-  text-transform: uppercase;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 15px 30px;
+  border-radius: 7px;
   cursor: pointer;
-  transition: background 0.4s;
-  min-width: 120px;
+  transition: 0.4s;
 }
 
 .button > * {
-  transition: background 0.4s;
+  transition: 0.4s;
 }
 
 .button-modal {
@@ -25,23 +24,23 @@
 }
 
 .button.primary, .button.primary > * {
-  background: #2d3d7d;
+  background: #3065c7;
 }
 
 .button.primary:hover, .button.primary:hover > * {
-  background: #4259b6;
+  background: #4d84eb;
 }
 
 .button.text {
 	background: none;
-	color: rgba(0, 0, 0, 0.2);
+	color: #3065c7;
 	font-size: 16px;
-	padding: 10px 15px;
+	padding: 15px 30px;
 	min-width: 0px;
 }
 
 .button.text:hover {
-  background: #e4e4e4;
+  color: #4d84eb;
 }
 
 .button.disabled {
