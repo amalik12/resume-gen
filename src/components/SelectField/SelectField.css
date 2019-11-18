@@ -5,8 +5,14 @@
     flex-basis: 0;
 }
 
-.SelectField.disabled {
-    opacity: 0.5;
+.selectfield-select.unselected {
+    color: #7d8997;
+}
+
+.disabled .selectfield-select {
+	color: #b9bbbf;
+	background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%2214px%22%20height%3D%228px%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20%20fill%3D%22rgb%28158%2C%20158%2C%20158%29%22%20d%3D%22M7.000%2C7.541%20L0.503%2C0.459%20L13.497%2C0.459%20L7.000%2C7.541%20Z%22%2F%3E%3C%2Fsvg%3E') 88% no-repeat #fbfbfb;
+	border: 1px solid #d5d7dd;
 }
 
 .selectfield-select {
@@ -25,11 +31,6 @@
     font-size: 17px;
     margin-top: 12px;
     width: 100%;
-}
-
-
-.selectfield-select.unselected {
-    color: #bab5b5;
 }
 
 .selectfield-option {
