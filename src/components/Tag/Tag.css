@@ -11,6 +11,18 @@
     margin-bottom: 12px;
 }
 
+.Tag.clickable {
+    cursor: pointer;
+}
+
+.Tag.clickable:hover {
+    color: #6e99e7;
+}
+
+.tag-close {
+    margin-left: 6px;
+}
+
 @media (max-width: 576px) {
     .Tag {
         font-size: 14px;

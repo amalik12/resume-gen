@@ -4,15 +4,45 @@
   text-align: left;
 }
 
-.textfield.disabled {
-  opacity: 0.5;
-}
-
 .textfield.inline {
   display: inline-block;
   margin-right: 20px;
   flex-grow: 1;
   flex-basis: 0;
+}
+
+.textfield.tags {
+  border-radius: 7px;
+  border: 2px solid #eceef2;
+  background: #eceef2;
+  transition: border-color 0.3s;
+  padding: 0px 20px;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  box-sizing: border-box;
+}
+
+.textfield.tags.focused {
+  border-color: #3065c7;
+}
+
+.textfield.text .textfield-input {
+  border-radius: 7px;
+  border: 2px solid #eceef2;
+  transition: border-color 0.3s;
+  padding: 13px 20px;
+  width: 100%;
+}
+
+.textfield.tags .textfield-input {
+  border: none;
+  padding: 0;
+  flex-grow: 1;
+}
+
+.textfield.text .textfield-input:focus {
+  border-color: #3065c7;
 }
 
 .textfield.inline:last-child {
@@ -22,7 +52,7 @@
 .textfield-label {
   position: absolute;
   display: block;
-  color: #bab5b5;
+  color: #7d8997;
   overflow: hidden;
   left: 20px;
   top: 15px;
@@ -44,25 +74,28 @@
 }
 
 .textfield-input {
-  border-radius: 7px;
-  border: 2px solid #eceef2;
-  transition: 0.3s;
-  padding: 13px 20px;
   background: #eceef2;
   outline: none;
   color: #272727;
   font-family: 'Montserrat', sans-serif;
   font-size: 17px;
-  width: 100%;
   box-sizing: border-box;
+}
+
+
+.disabled .textfield-input {
+	color: #b9bbbf;
+	background: #fbfbfb;
+  border: 1px solid #d5d7dd;
+  padding: 14px 20px;
+}
+
+.disabled .textfield-label, .disabled .textfield-input::placeholder {
+  color: #b9bbbf;
 }
 
 .textfield.large .textfield-input {
   font-size: 28px;
-}
-
-.textfield-input:focus {
-  border-color: #3065c7;
 }
 
 .textfield.invalid .textfield-label {
@@ -85,4 +118,18 @@
 
 .textfield.large .textfield-error {
   top: 42px;
+}
+
+.textfield-tags .Tag {
+  margin-bottom: 0px;
+  margin-right: 7px;
+}
+
+.textfield-desc {
+  position: absolute;
+  font-size: 14px;
+  font-weight: 400;
+  top: -30px;
+  right: 0;
+  color: #8f9197;
 }

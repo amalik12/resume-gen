@@ -4,6 +4,7 @@ import TextField from '../TextField';
 import { ModalContext } from '../ModalProvider/ModalProvider';
 import SelectField from '../SelectField/SelectField';
 import CheckField from '../CheckField/CheckField';
+import TagInput from '../TagInput/TagInput';
 
 const ModalConsumer = ModalContext.Consumer;
 
@@ -35,6 +36,7 @@ let ExperienceModal = ({edit}) => {
     const [endMonth, endMonthInput] = useSelect("End date", "end-date", current);
     const [endYear, endYearInput] = useInput("Year", "end-year", current);
     
+    const [tags, setTags] = useState([])
 
     return (
         <ModalConsumer>
@@ -52,8 +54,9 @@ let ExperienceModal = ({edit}) => {
                     {endYearInput}
                 </div>
                 <div className="form-row">
-                {currentInput}
+                    {currentInput}
                 </div>
+                    <TagInput tags={tags} desc="Separate skils with commas" addTag={(tag) => setTags([...tags, tag])} popTag={(index) => {let newArray = [...tags]; newArray.splice(index, 1); setTags(newArray)}}/>
             </FormModal>)
         }
         </ModalConsumer>
