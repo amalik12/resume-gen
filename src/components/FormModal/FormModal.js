@@ -11,11 +11,17 @@ let FormModal = (props) => {
             {({hideModal}) =>
             (<Modal showModal={props.showModal} dismissable={false} submitted={props.submitted} title={props.title}>
                 <div className="modal-body">
+                    <div className="modal-body-content">
                     {props.children}
+                    </div>
                 </div>
                 <div className="modal-footer">
                     <Button onClick={props.submit} loading={props.loading} enabled={props.enabled} />
                     <Button label="Cancel" onClick={hideModal} buttonStyle="text"/>
+                    {props.delete &&
+                    <div className="modal-delete-button">
+                        <Button label="Delete" onClick={props.delete} buttonStyle="outline delete" />
+                    </div>}
                 </div>
             </Modal>)}
         </ModalConsumer>

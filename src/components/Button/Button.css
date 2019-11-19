@@ -6,7 +6,7 @@
   color: white;
   font-size: 17px;
   font-weight: 500;
-  padding: 15px 30px;
+  padding: 12px 26px;
   border-radius: 7px;
   cursor: pointer;
   transition: 0.4s;
@@ -31,12 +31,26 @@
   background: #4d84eb;
 }
 
-.button.text {
+.button.outline {
+  border: 2px solid #b2c0db;
+}
+
+.button.outline:hover {
+  border: 2px solid #7b9fe7;
+}
+
+.button.text, .button.outline {
 	background: none;
 	color: #3065c7;
-	font-size: 16px;
-	padding: 15px 30px;
 	min-width: 0px;
+}
+
+.button.delete {
+  color: #e74c3c;
+}
+
+.button.delete:hover {
+  border: 2px solid #e74c3c;
 }
 
 .button.text:hover {

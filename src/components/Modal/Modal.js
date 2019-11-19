@@ -8,7 +8,7 @@ let Modal = (props) => {
         isOpen={props.showModal}
         overlayClassName="modal-overlay"
         className={"modal" + (props.submitted ? " confirm" : "")}
-        closeTimeoutMS={200}
+        closeTimeoutMS={150}
         onRequestClose={props.dismiss}
         shouldCloseOnOverlayClick={props.dismiss !== undefined}>
             <div className="modal-header">

@@ -1,3 +1,37 @@
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+
+.ReactModal__Overlay {
+  transition: opacity 150ms ease-in-out;
+  opacity: 0;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.ReactModal__Content {
+  top: 50%;
+  transition: transform 150ms ease-in-out;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.ReactModal__Content--after-open {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.ReactModal__Content--before-close {
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.ReactModal__Content--before-close.confirm {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -5,18 +39,24 @@
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.75);
+  display: flex;
 }
 
 .modal {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   width: 750px;
   margin: auto;
   outline: none;
   overflow: hidden;
   opacity: 1;
+  display: flex;
+  flex: 1;
+  height: 600px;
+  max-height: 90%;
+  min-height: 400px;
+  flex-direction: column;
 }
 
 .modal > *:first-child {
@@ -31,18 +71,24 @@
   padding: 25px;
   background: white;
   margin-bottom: -1px;
+  flex: 0 0 auto;
 }
 
 .modal-title {
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .modal-body {
-  padding: 25px;
+  padding: 0 25px;
   overflow: auto;
   background: white;
   text-align: center;
-  margin-bottom: -1px;
+  flex: 1 1 auto;
+  height: 100%;
+}
+
+.modal-body-content {
+  padding: 25px 0;
 }
 
 .modal-close {
@@ -62,4 +108,9 @@
   display: flex;
   background: #e0e5ef;
   padding: 25px;
+  flex: 0 0 auto;
+}
+
+.modal-delete-button {
+  margin-left: auto;
 }
