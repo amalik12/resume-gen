@@ -1,10 +1,10 @@
 import React from 'react'
 import './CheckField.css'
 
-let CheckField = ({desc, value, handleChange}) => {
+let CheckField = ({desc, value, handleChange, id}) => {
     return (
         <label className="CheckField">
-            <input className="checkfield-input" type="checkbox" checked={value} onChange={handleChange} />
+            <input name={id} className="checkfield-input" type="checkbox" checked={value} onChange={handleChange} />
             <i className="fas fa-check checkfield-check"></i>
             <span className="checkfield-label">{desc}</span>
         </label>

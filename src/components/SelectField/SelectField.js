@@ -5,7 +5,7 @@ let SelectField = ({options, name, value, handleChange, id, disabled}) => {
     return (
         <div className={"SelectField " + (disabled ? 'disabled' : '')}>
             <label className="selectfield-label" htmlFor={id}>{name}</label>
-            <select className={"selectfield-select" + (!value || value === options[0] ? ' unselected' : '')} disabled={disabled} value={value} onChange={handleChange} id={id}>
+            <select name={id} className={"selectfield-select" + (!value || value === options[0] ? ' unselected' : '')} disabled={disabled} value={value} onChange={handleChange} id={id}>
                 {options.map((item) => <option className="selectfield-option">{item}</option>)}
             </select>
         </div>
