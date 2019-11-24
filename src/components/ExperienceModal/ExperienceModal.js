@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import useForm from 'react-hook-form';
 import FormModal from '../FormModal';
 import TextField from '../TextField';
 import { ModalContext } from '../ModalProvider/ModalProvider';

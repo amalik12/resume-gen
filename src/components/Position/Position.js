@@ -2,6 +2,9 @@ import React from 'react'
 import './Position.css'
 import Tag from '../Tag';
 import EditButton from '../EditButton';
+import { ModalContext } from '../ModalProvider/ModalProvider';
+
+const ModalConsumer = ModalContext.Consumer;
 
 class Position extends React.Component {
     constructor(props) {

@@ -7,7 +7,7 @@ let Category = ({ title }) => {
         <div className="Category">
             <div className="category-title">{title}</div>
             <Position title="Software Engineer" company="Bloomberg"
-            startDate="Sept 2018" endDate="Present" tags={['c++', 'python']}
+            startDate="Sept 2018" endDate="Present" tags={['c++', 'python']} type="experience"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel efficitur lectus. Nam ut tempus nisi, eu posuere justo. In porttitor euismod dolor, gravida mollis ex gravida vitae. Quisque urna ante, dignissim sed aliquet ut, laoreet ac enim."/>
         </div>
     )
