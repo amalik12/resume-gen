@@ -53,7 +53,6 @@
   opacity: 1;
   display: flex;
   flex: 1;
-  height: 600px;
   max-height: 90%;
   min-height: 400px;
   flex-direction: column;
@@ -63,7 +62,7 @@
   border-radius: 6px 6px 0px 0px;
 }
 
-.modal > *:last-child {
+.modal > *:last-child, .modal > form > *:last-child {
   border-radius: 0px 0px 6px 6px;
 }
 

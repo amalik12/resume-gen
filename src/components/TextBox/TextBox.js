@@ -8,7 +8,7 @@ let TextBox = (props) => {
         <label className="textbox-label" htmlFor={props.id}>{props.label}</label>
         {props.desc && <span className="textbox-desc">{props.desc}</span>}
       </div>
-      <textarea name={props.label} id={props.id} disabled={props.disabled} className="textbox-input" value={props.value} onChange={props.handleChange}/>
+      <textarea name={props.id} id={props.id} disabled={props.disabled} className="textbox-input" value={props.value} onChange={props.handleChange}/>
     </div>
   );
 }

@@ -16,7 +16,7 @@ let FormModal = (props) => {
                     </div>
                 </div>
                 <div className="modal-footer">
-                    <Button onClick={props.submit} loading={props.loading} enabled={props.enabled} />
+                    <Button submit={true} loading={props.loading} enabled={props.enabled} />
                     <Button label="Cancel" onClick={hideModal} buttonStyle="text"/>
                     {props.delete &&
                     <div className="modal-delete-button">

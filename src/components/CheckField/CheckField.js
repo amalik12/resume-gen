@@ -1,7 +1,7 @@
 import React from 'react'
 import './CheckField.css'
 
-let CheckField = ({desc, value, handleChange, id}) => {
+let CheckField = ({desc, value, handleChange, id, validation}) => {
     return (
         <label className="CheckField">
             <input name={id} className="checkfield-input" type="checkbox" checked={value} onChange={handleChange} />

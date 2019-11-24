@@ -10,41 +10,43 @@ import TextBox from '../TextBox';
 
 const ModalConsumer = ModalContext.Consumer;
 
-function useInput(name, id , register, disabled = false) {
+function useInput(name, id, validation = undefined, number = false, disabled = false) {
     const [value, setValue] = useState("");
-    const input = <TextField label={name} value={value} id={id} inline={true} disabled={disabled} handleChange={e => setValue(e.target.value)} />
+    const input = <TextField validation={validation} label={name} number={number} value={value} id={id} inline={true} disabled={disabled} handleChange={e => setValue(e.target.value)} />
     return [value, input];
 }
 
-function useSelect(name, id, register, disabled = false) {
+function useSelect(name, id, validation = undefined, disabled = false) {
     const [value, setValue] = useState("");
     let months = ['Month', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-    const input = <SelectField name={name} value={value} id={id} disabled={disabled} handleChange={e => setValue(e.target.value)} options={months}/>
+    const input = <SelectField validation={validation} name={name} value={value} id={id} disabled={disabled} handleChange={e => setValue(e.target.value)} options={months}/>
     return [value, input];
 }
 
-function useCheck(desc, id, register,) {
+function useCheck(desc, id, validation = undefined) {
     const [value, setValue] = useState(false);
-    const input = <CheckField desc={desc} id={id} value={value} handleChange={e => setValue(e.target.checked)} />
+    const input = <CheckField validation={validation} desc={desc} id={id} value={value} handleChange={e => setValue(e.target.checked)} />
     return [value, input];
 }
 
 let ExperienceModal = ({edit}) => {
+    const currentYear = new Date().getFullYear()
+    
     const [company, companyInput] = useInput("Company name", "company", { required: true });
     const [title, titleInput] = useInput("Title", "title", { required: true });
     const [startMonth, startMonthInput] = useSelect("Start date", "start-date", { required: true });
-    const [startYear, startYearInput] = useInput("Year", "start-year", { required: true });
-    const [current, currentInput] = useCheck("I'm currently working here", "current", {});
-    const [endMonth, endMonthInput] = useSelect("End date", "end-date", current, { required: true });
-    const [endYear, endYearInput] = useInput("Year", "end-year", current, { required: true });
+    const [startYear, startYearInput] = useInput("Year", "start-year", { required: true, min: 1900, max: currentYear }, true);
+    const [current, currentInput] = useCheck("I'm currently working here", "current");
+    const [endMonth, endMonthInput] = useSelect("End date", "end-date", { required: true }, current);
+    const [endYear, endYearInput] = useInput("Year", "end-year", { required: true, min: Math.max(1900, startYear), max: currentYear }, true, current);
     
     const [tags, setTags] = useState([])
     const [description, setDesc] = useState("")
-
+    
     return (
         <ModalConsumer>
         {({isOpen}) =>
-            (<FormModal title={(edit ? "Edit" : "Add") + " Experience"} showModal={isOpen} loading={false} delete={edit} enabled={true}>
+            (<form><FormModal title={(edit ? "Edit" : "Add") + " Experience"} showModal={isOpen} loading={false} delete={edit} enabled={true}>
                 <div className="form-row">
                     {companyInput}
                     {titleInput}
@@ -61,7 +63,7 @@ let ExperienceModal = ({edit}) => {
                 </div>
                 <TagInput tags={tags} desc="Separate skils with commas" addTag={(tag) => setTags([...tags, tag])} popTag={(index) => {let newArray = [...tags]; newArray.splice(index, 1); setTags(newArray)}}/>
                 <TextBox label="Description" desc="Each line break will be bulleted separately" value={description} id="description" area={true} handleChange={e => setDesc(e.target.value)} />
-            </FormModal>)
+            </FormModal></form>)
         }
         </ModalConsumer>
     );
