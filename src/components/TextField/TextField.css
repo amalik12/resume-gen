@@ -30,7 +30,7 @@
 .textfield.text .textfield-input {
   border-radius: 7px;
   border: 2px solid #eceef2;
-  transition: border-color 0.3s;
+  transition: 0.3s;
   padding: 13px 20px;
   width: 100%;
 }
@@ -98,7 +98,7 @@
   font-size: 28px;
 }
 
-.textfield.invalid .textfield-label {
+.textfield.invalid .textfield-label.focused, .textfield.invalid .textfield-label.focused {
   color: #d80e0e;
 }
 

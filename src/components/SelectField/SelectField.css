@@ -31,6 +31,7 @@
     font-size: 17px;
     margin-top: 12px;
     width: 100%;
+    transition: 0.3s;
 }
 
 .selectfield-option {
@@ -45,4 +46,9 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    transition: 0.3s;
+}
+
+.disabled .selectfield-label {
+    color: #b9bbbf;
 }

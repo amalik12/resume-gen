@@ -5,7 +5,7 @@ import Tag from '../Tag';
 class TextField extends Component {
   constructor(props) {
     super(props);
-    this.state = {focused: false, touched: false};
+    this.state = {focused: false, touched: false, errorText: ''};
 
     this.focusOn = this.focusOn.bind(this);
     this.focusOff = this.focusOff.bind(this);
@@ -30,8 +30,7 @@ class TextField extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log('update')
-    if (this.props.errorText !== prevProps.errorText) {
+    if (this.props.value !== prevProps.value) {
       this.setState({errorText: this.getErrorText(this.input.current.validity)})
     }
   }
@@ -46,12 +45,12 @@ class TextField extends Component {
     }
     
     return (
-      <div className={"textfield" + (this.state.focused ? " focused" : "") + (this.props.tagInput ? ' tags' : ' text') + (this.props.inline ? ' inline' : '') + (this.props.large ? " large" : "") + (this.props.errorText ? " invalid" : "") + (this.props.disabled ? " disabled" : "")}>
+      <div className={"textfield" + (this.state.focused ? " focused" : "") + (this.props.tagInput ? ' tags' : ' text') + (this.props.inline ? ' inline' : '') + (this.props.large ? " large" : "") + (this.state.errorText ? " invalid" : "") + (this.props.disabled ? " disabled" : "")}>
         {this.props.desc && <span className="textfield-desc">{this.props.desc}</span>}
         {this.props.tagInput && <div className="textfield-tags">{this.props.tags.map((item, index) => <Tag onClick={() => this.props.tagAction(index)}>{item}</Tag>)}</div>}
-        <input name={this.props.id} id={this.props.id} ref={this.input} disabled={this.props.disabled} placeholder={this.props.float ? '' : this.props.label} onKeyDown={this.props.onKeyDown} className={"textfield-input" + (this.state.touched ? " touched" : "")} type={type} value={this.props.value} onChange={this.props.handleChange} onFocus={this.focusOn} onBlur={this.focusOff} {...this.props.validation} />
+        <input name={this.props.id} id={this.props.id} ref={this.input} disabled={this.props.disabled} placeholder={this.props.float ? '' : this.props.label} onKeyDown={this.props.onKeyDown} className={"textfield-input" + (this.state.touched ? " touched" : "")} type={type} value={this.props.value} onChange={this.props.handleChange} onFocus={this.focusOn} onBlur={this.focusOff} onWheel={e => { if (this.state.focused) e.preventDefault();}} {...this.props.validation} />
         {this.props.float && <label className={"textfield-label"  + (this.state.focused ? " focused" : "") + (this.props.value ? " has-input" : "")} htmlFor={this.props.id}>{this.props.label}</label>}
-        <span className="textfield-error">{this.state.errorText}</span>
+        <span className="textfield-error">{!this.props.disabled && this.state.errorText}</span>
       </div>
     );
   }
