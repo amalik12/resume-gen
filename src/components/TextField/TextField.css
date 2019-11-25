@@ -82,14 +82,6 @@
   box-sizing: border-box;
 }
 
-
-.disabled .textfield-input {
-	color: #b9bbbf;
-	background: #fbfbfb;
-  border: 1px solid #d5d7dd;
-  padding: 14px 20px;
-}
-
 .disabled .textfield-label, .disabled .textfield-input::placeholder {
   color: #b9bbbf;
 }
@@ -102,9 +94,15 @@
   color: #d80e0e;
 }
 
-.textfield.text .textfield-input.touched:invalid {
+.textfield.text.invalid .textfield-input {
   border-color: #d80e0e;
   box-shadow: none;
+}
+
+.disabled .textfield-input {
+	color: #b9bbbf;
+	background: #fbfbfb;
+  padding: 14px 20px;
 }
 
 .textfield-error {
