@@ -62,3 +62,11 @@
 	top: 90px;
 	color: #d80e0e;
 }
+
+.selectfield-select.invalid {
+    border-color: #d80e0e;
+}
+
+.selectfield-label.invalid {
+    color: #d80e0e;
+}
