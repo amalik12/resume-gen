@@ -10,8 +10,18 @@ export const ExperienceSchema = Yup.object().shape({
         .required('Start month is required'),
     startYear: Yup.number()
         .required("Start year is required"),
-    endMonth: Yup.number(),
-    endYear: Yup.number(),
+    endMonth: Yup.number()
+        .when('current', {
+            is: false,
+            then: Yup.number().required('End month is required'),
+            otherwise: Yup.number()
+        }),
+    endYear: Yup.number()
+        .when('current', {
+            is: false,
+            then: Yup.number().required('End year is required'),
+            otherwise: Yup.number()
+        }),
     current: Yup.boolean(),
     tags: Yup.array(),
     description: Yup.string()
