@@ -10,9 +10,12 @@ class TagInput extends React.Component {
     }
 
     handleTags(event, arrayHelpers) {
-        if (event.key === ',' && event.target.value) {
-            arrayHelpers.push(event.target.value)
-            event.target.value = ''
+        if (event.key === ',') {
+            if (event.target.value.trim())
+            {
+                arrayHelpers.push(event.target.value.trim())
+                event.target.value = ''
+            }
             event.preventDefault()
         } else if (event.key === 'Backspace' && !event.target.value) {
             arrayHelpers.pop()
