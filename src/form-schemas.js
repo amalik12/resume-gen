@@ -23,6 +23,6 @@ export const ExperienceSchema = Yup.object().shape({
             otherwise: Yup.number()
         }),
     current: Yup.boolean(),
-    tags: Yup.array(),
+    tags: Yup.array().of(Yup.string()),
     description: Yup.string()
   });
