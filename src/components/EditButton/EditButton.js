@@ -20,7 +20,7 @@ class EditButton extends React.Component {
     render() {
         const { className } = this.props;
         return (
-            <i className={(className ? className : '') + ' ' + (this.state.mouse && 'active') + " edit-icon fas fa-pen"} onMouseDown={this.mouseDown} onMouseUp={this.mouseUp} onMouseLeave={this.mouseUp}></i>
+            <i className={(className ? className : '') + ' ' + (this.state.mouse && 'active') + " edit-icon fas fa-pen"} onMouseDown={this.mouseDown} onMouseUp={this.mouseUp} onMouseLeave={this.mouseUp} onClick={this.props.onClick}></i>
         )
     }
 }

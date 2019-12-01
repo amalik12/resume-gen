@@ -11,19 +11,24 @@ import { ExperienceSchema } from '../../form-schemas';
 
 const ModalConsumer = ModalContext.Consumer;
 
-let ExperienceModal = ({edit}) => {
+let ExperienceModal = ({edit, initial}) => {
     const months = ['Month', 'January', 'February', 'March', 'April', 'May',
     'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    let initialValues = {
+        company: '', title: '', startMonth: 0, startYear: '', 
+        endMonth: 0, endYear: '', current: false, description: '', tags: []
+    }
+
+    if (initial !== undefined) {
+        initialValues = {...initialValues, ...initial}
+    }
     
     return (
         <ModalConsumer>
         {({isOpen}) =>
             (<FormModal title={(edit ? "Edit" : "Add") + " Experience"} showModal={isOpen} loading={false} delete={edit} enabled={true}>
                 <Formik
-                    initialValues={{
-                        company: '', title: '', startMonth: 0, startYear: '', 
-                        endMonth: 0, endYear: '', current: false, description: '', tags: []
-                    }}
+                    initialValues={initialValues}
                     validationSchema={ExperienceSchema}
                 >
                     {({values}) => (
