@@ -19,7 +19,7 @@ let TextField = (props) => {
       {props.desc && <span className="textfield-desc">{props.desc}</span>}
       {props.tagInput && <div className="textfield-tags">{props.tags.map((item, index) => <Tag onClick={() => props.tagAction(index)}>{item}</Tag>)}</div>}
       <input {...field} disabled={props.disabled} placeholder={props.float ? '' : props.label} onKeyDown={props.onKeyDown} className={"textfield-input"} type={type} onFocus={() => setFocused(true)} onBlur={(e) => { setFocused(false); field.onBlur(e) }}/>
-      {props.float && <label className={"textfield-label"  + (focused ? " focused" : "") + (props.value ? " has-input" : "")} htmlFor={props.id}>{props.label}</label>}
+      {props.float && <label className={"textfield-label"  + (focused ? " focused" : "") + (field.value ? " has-input" : "")} htmlFor={props.id}>{props.label}</label>}
       <span className="textfield-error">{meta.touched && meta.error}</span>
     </div>
   );
