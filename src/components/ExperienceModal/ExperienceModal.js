@@ -1,19 +1,22 @@
 import React from 'react';
-import FormModal from '../FormModal';
 import TextField from '../TextField';
-import { ModalContext } from '../ModalProvider/ModalProvider';
 import SelectField from '../SelectField';
 import CheckField from '../CheckField';
 import TagInput from '../TagInput';
 import TextBox from '../TextBox';
-import { Formik, Form } from 'formik';
+import Modal from '../Modal';
+import FormFooter from '../FormFooter';
 import { ExperienceSchema } from '../../form-schemas';
+import { Formik, Form } from 'formik';
+import { ModalContext } from '../ModalProvider/ModalProvider';
 
+
+const ModalConsumer = ModalContext.Consumer;
 
 let ExperienceModal = ({edit, initial}) => {
     const months = ['Month', 'January', 'February', 'March', 'April', 'May',
     'June', 'July', 'August', 'September', 'October', 'November', 'December']
-    
+
     let initialValues = {
         company: '', title: '', startMonth: 0, startYear: '', 
         endMonth: 0, endYear: '', current: false, description: '', tags: []
@@ -24,26 +27,41 @@ let ExperienceModal = ({edit, initial}) => {
     }
 
     return (
-        <FormModal title={(edit ? "Edit" : "Add") + " Experience"} loading={false} delete={edit} enabled={true} initial={initialValues} schema={ExperienceSchema}>
-            {({values}) => (<div>
-                <div className="form-row">
-                    <TextField label="Company name" id="company" inline={true}/>
-                    <TextField label="Title" id="title" inline={true} />
-                </div>
-                <div className="form-row">
-                    <SelectField name="Start date" id="startMonth" options={months} />
-                    <TextField label="Year" id="startYear" inline={true} />
-                    <div className="form-divider"/>
-                    <SelectField name="End date" id="endMonth" options={months} disabled={values.current} />
-                    <TextField label="Year" id="endYear" inline={true} disabled={values.current}/>
-                </div>
-                <div className="form-row">
-                    <CheckField desc="I'm currently working here" id="current"/>
-                </div>
-                <TagInput label="Skills" id="tags" values={values.tags} desc="Separate skils with commas"/>
-                <TextBox label="Description" desc="Each line break will be bulleted separately" id="description"/>
-            </div>)}
-        </FormModal>
+        <ModalConsumer>
+            {({ isOpen, hideModal }) => (<Modal showModal={isOpen} dismissable={false} enabled={true} delete={edit}
+            loading={false} submitted={false} title={(edit ? "Edit" : "Add") + " Experience"}>
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={ExperienceSchema}
+                >
+                    {({ values, isValid }) => (
+                        <Form className="modal-inner">
+                            <div className="modal-body">
+                                <div className="modal-body-content">
+                                    <div className="form-row">
+                                        <TextField label="Company name" id="company" inline={true} />
+                                        <TextField label="Title" id="title" inline={true} />
+                                    </div>
+                                    <div className="form-row">
+                                        <SelectField name="Start date" id="startMonth" options={months} />
+                                        <TextField label="Year" id="startYear" inline={true} />
+                                        <div className="form-divider" />
+                                        <SelectField name="End date" id="endMonth" options={months} disabled={values.current} />
+                                        <TextField label="Year" id="endYear" inline={true} disabled={values.current} />
+                                    </div>
+                                    <div className="form-row">
+                                        <CheckField desc="I'm currently working here" id="current" />
+                                    </div>
+                                    <TagInput label="Skills" id="tags" values={values.tags} desc="Separate skils with commas" />
+                                    <TextBox label="Description" desc="Each line break will be bulleted separately" id="description" />
+                                </div>
+                            </div>
+                            <FormFooter loading={false} enabled={isValid} delete={true} hide={hideModal}/>
+                        </Form>
+                    )}
+                </Formik>
+            </Modal>)}
+        </ModalConsumer>
     )
 }
 export default ExperienceModal;

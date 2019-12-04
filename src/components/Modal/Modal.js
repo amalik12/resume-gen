@@ -11,7 +11,7 @@ let Modal = (props) => {
         closeTimeoutMS={150}
         onRequestClose={props.dismiss}
         shouldCloseOnOverlayClick={props.dismiss !== undefined}>
-            <div className="modal-header">
+            <div className="modal-header modal-block">
                 <span className="modal-title">{props.title}</span>
                 {props.dismiss && <i onClick={props.dismiss} className="modal-close material-icons">close</i>}
             </div>
