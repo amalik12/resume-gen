@@ -2,6 +2,7 @@
   position: relative;
   margin-top: 10px;
   text-align: left;
+  flex-grow: 1;
 }
 
 .textfield.inline {
@@ -65,7 +66,7 @@
   font-size: 28px;
 }
 
-.textfield-label.focused, .textfield-label.has-input {
+.textfield-label.focused, .textfield-label.has-input, .textfield-label.fixed {
   color: #2d3d7d;
   top: -30px;
   left: 0;
@@ -90,7 +91,7 @@
   font-size: 28px;
 }
 
-.textfield.invalid .textfield-label.focused, .textfield.invalid .textfield-label.has-input {
+.textfield.invalid .textfield-label.focused, .textfield.invalid .textfield-label.has-input, .textfield.invalid .textfield-label.fixed {
   color: #d80e0e;
 }
 

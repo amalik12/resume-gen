@@ -28,8 +28,7 @@ let ExperienceModal = ({edit, initial}) => {
 
     return (
         <ModalConsumer>
-            {({ isOpen, hideModal }) => (<Modal showModal={isOpen} dismissable={false} enabled={true} delete={edit}
-            loading={false} submitted={false} title={(edit ? "Edit" : "Add") + " Experience"}>
+            {({ isOpen, hideModal }) => (<Modal showModal={isOpen} submitted={false} title={(edit ? "Edit" : "Add") + " Experience"}>
                 <Formik
                     initialValues={initialValues}
                     validationSchema={ExperienceSchema}

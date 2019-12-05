@@ -26,3 +26,12 @@ export const ExperienceSchema = Yup.object().shape({
     tags: Yup.array().of(Yup.string()),
     description: Yup.string()
   });
+
+export const ProfileSchema = Yup.object().shape({
+    name: Yup.string()
+        .required('Full name is required'),
+    website: Yup.string().url().label('Website'),
+    email: Yup.string().email().label("Email address"),
+    location: Yup.string().label('Location'),
+    github: Yup.string().label('Github')
+});
