@@ -111,9 +111,14 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
   top: 59px;
   color: #d80e0e;
+}
+
+.textfield-error.fixed {
+  right: 0;
+  left: initial;
+  top: -27px;
 }
 
 .textfield.large .textfield-error {

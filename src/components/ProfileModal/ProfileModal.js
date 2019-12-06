@@ -30,14 +30,14 @@ let ProfileModal = ({ initial }) => {
                         <Form className="modal-inner">
                             <div className="modal-body">
                                 <div className="modal-body-content">
-                                    <div className="form-row">
+                                    <div className="form-row profile">
                                         <TextField label="Full name" id="name" fixed={true}/>
                                     </div>
-                                    <div className="form-row">
+                                    <div className="form-row profile">
                                         <TextField label="Website" id="website" inline={true} fixed={true}/>
                                         <TextField label="Email address" id="email" inline={true} fixed={true}/>
                                     </div>
-                                    <div className="form-row">
+                                    <div className="form-row profile">
                                         <TextField label="Location" id="location" inline={true} fixed={true}/>
                                         <TextField label="Github username" id="github" inline={true} fixed={true}/>
                                     </div>
