@@ -55,7 +55,7 @@ let ExperienceModal = ({edit, initial}) => {
                                     <TextBox label="Description" desc="Each line break will be bulleted separately" id="description" />
                                 </div>
                             </div>
-                            <FormFooter loading={false} enabled={isValid} delete={true} hide={hideModal}/>
+                            <FormFooter loading={false} enabled={isValid} delete={edit} hide={hideModal}/>
                         </Form>
                     )}
                 </Formik>

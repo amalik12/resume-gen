@@ -46,7 +46,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 750px;
+  width: 770px;
   margin: auto;
   outline: none;
   
@@ -112,6 +112,7 @@
 .modal-footer {
   display: flex;
   background: #e0e5ef;
+  border: 1px solid #e0e5ef;
   padding: 25px;
   flex: 0 0 auto;
 }
