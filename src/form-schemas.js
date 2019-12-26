@@ -80,6 +80,24 @@ export const EducationSchema = Yup.object().shape({
     description: Yup.string()
 });
 
+export const ProjectSchema = Yup.object().shape({
+    company: Yup.string()
+        .required('Project name is required'),
+    startMonth: Yup.number()
+        .required('Start month is required')
+        .integer()
+        .max(12),
+    startYear: Yup.number()
+        .typeError('Year must be a number')
+        .required('Start year is required')
+        .integer('Year is not valid')
+        .min(1900, 'Year is not valid')
+        .max(new Date().getFullYear(), 'Year is not valid'),
+    website: Yup.string().url().label('Website'),
+    tags: Yup.array().of(Yup.string()),
+    description: Yup.string()
+});
+
 export const ProfileSchema = Yup.object().shape({
     name: Yup.string()
         .required('Full name is required'),

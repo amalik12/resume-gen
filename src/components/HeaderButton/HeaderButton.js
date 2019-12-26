@@ -3,6 +3,8 @@ import './HeaderButton.css'
 import ProfileDropdown from "../ProfileDropdown";
 import { ModalContext } from "../ModalProvider/ModalProvider";
 import ExperienceModal from "../ExperienceModal";
+import EducationModal from "../EducationModal";
+import ProjectsModal from "../ProjectsModal/ProjectsModal";
 
 function useOutsideClick(ref, open, setOpen) {
     useEffect(() => {
@@ -35,7 +37,7 @@ let HeaderButton = ({ name }) => {
             <div  className="HeaderButton" onClick={e => setOpen(!open)}>
                 <span className="header-button-text">{name}</span>
             </div>
-            {open && <ProfileDropdown items={[['Experience', ExperienceModal], ['Education', null], ['Projects', null]]} select={showModal}/>}
+            {open && <ProfileDropdown items={[['Experience', ExperienceModal], ['Education', EducationModal], ['Projects', ProjectsModal]]} select={showModal} setOpen={setOpen}/>}
         </div>)}
         </ModalConsumer>
     )
