@@ -10,7 +10,8 @@ export const ExperienceSchema = Yup.object().shape({
         .integer()
         .max(12),
     startYear: Yup.number()
-        .required("Start year is required")
+        .typeError('Year must be a number')
+        .required('Start year is required')
         .integer('Year is not valid')
         .min(1900, 'Year is not valid')
         .max(new Date().getFullYear(), 'Year is not valid'),
@@ -34,7 +35,8 @@ export const ExperienceSchema = Yup.object().shape({
     endYear: Yup.number()
         .when('current', {
             is: false,
-            then: Yup.number().required('End year is required')
+            then: Yup.number().typeError('Year must be a number')
+            .required('End year is required')
             .integer('Year is not valid')
             .max(new Date().getFullYear(), 'Year is not valid'),
             otherwise: Yup.number()
