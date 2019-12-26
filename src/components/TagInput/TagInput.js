@@ -26,10 +26,12 @@ class TagInput extends React.Component {
         return (
             <FieldArray name={this.props.id}>
                 {(arrayHelpers) => (
-                <div className={"textfield tags" + (this.props.disabled ? " disabled" : "") + (this.state.focused ? " focused" : "")}>
+                <div className="textfield-tags-container">
                     {this.props.desc && <span className="textfield-desc">{this.props.desc}</span>}
-                    <div className="textfield-tags">{this.props.values.map((item, index) => <Tag onClick={() => arrayHelpers.remove(index)}>{item}</Tag>)}</div>
-                    <input disabled={this.props.disabled} placeholder={this.props.values.length ? '' : this.props.label} onFocus={() => this.setState({ focused: true })} onBlur={(e) => this.setState({ focused: false })} onKeyDown={(e) => this.handleTags(e, arrayHelpers)} className={"textfield-input"} />
+                    <div className={"textfield tags" + (this.props.disabled ? " disabled" : "") + (this.state.focused ? " focused" : "")}>
+                        <div className="textfield-tags">{this.props.values.map((item, index) => <Tag onClick={() => arrayHelpers.remove(index)}>{item}</Tag>)}</div>
+                        <input disabled={this.props.disabled} placeholder={this.props.values.length ? '' : this.props.label} onFocus={() => this.setState({ focused: true })} onBlur={(e) => this.setState({ focused: false })} onKeyDown={(e) => this.handleTags(e, arrayHelpers)} className={"textfield-input"} />
+                    </div>
                 </div>
                 )}
             </FieldArray>

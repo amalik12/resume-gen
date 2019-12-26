@@ -12,6 +12,10 @@
   flex-basis: 0;
 }
 
+.textfield-tags-container {
+  text-align: right;
+}
+
 .textfield.tags {
   border-radius: 7px;
   border: 2px solid #eceef2;
@@ -131,10 +135,8 @@
 }
 
 .textfield-desc {
-  position: absolute;
   font-size: 14px;
   font-weight: 400;
-  top: -30px;
   right: 0;
   color: #8f9197;
 }
