@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './ProfileDropdown.css'
 
-let ProfileDropdown = ({items, select}) => {
+let ProfileDropdown = ({items, select, setOpen}) => {
     const [opacity, setOpacity] = useState(0);
 
     useEffect(() => {
@@ -16,7 +16,7 @@ let ProfileDropdown = ({items, select}) => {
     return (
         <div className="ProfileDropdown" style={{opacity: opacity}}>
             <ul className="profile-dropdown-list">
-                {items.map((item) => <li key={item[0]} onClick={e => select(item[1], itemProps)} className="profile-dropdown-item">{item[0]}</li>)}
+                {items.map((item) => <li key={item[0]} onClick={e => {select(item[1], itemProps); setOpen(false)}} className="profile-dropdown-item">{item[0]}</li>)}
             </ul>
         </div>
     )
