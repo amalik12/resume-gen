@@ -32,6 +32,7 @@ let ExperienceModal = ({edit, initial}) => {
                 <Formik
                     initialValues={initialValues}
                     validationSchema={ExperienceSchema}
+                    validateOnMount={true}
                 >
                     {({ values, isValid }) => (
                         <Form className="modal-inner">
