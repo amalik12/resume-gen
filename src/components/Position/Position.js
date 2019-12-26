@@ -3,8 +3,8 @@ import './Position.css'
 import Tag from '../Tag';
 import EditButton from '../EditButton';
 import { ModalContext } from '../ModalProvider/ModalProvider';
-import ExperienceModal from '../ExperienceModal/ExperienceModal';
-import EducationModal from '../EducationModal/EducationModal';
+import ExperienceModal from '../ExperienceModal';
+import EducationModal from '../EducationModal';
 
 const ModalConsumer = ModalContext.Consumer;
 
