@@ -52,7 +52,7 @@ let ExperienceModal = ({edit, initial}) => {
                                     <div className="form-row">
                                         <CheckField desc="I'm currently working here" id="current" />
                                     </div>
-                                    <TagInput label="Skills" id="tags" values={values.tags} desc="Separate skils with commas" />
+                                    <TagInput label="Skills" id="tags" desc="Separate skils with commas" />
                                     <TextBox label="Description" desc="Each line break will be bulleted separately" id="description" />
                                 </div>
                             </div>

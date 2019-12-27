@@ -33,7 +33,7 @@ let EducationModal = ({edit, initial}) => {
                     validationSchema={EducationSchema}
                     validateOnMount={true}
                 >
-                    {({ values, isValid }) => (
+                    {({ isValid }) => (
                         <Form className="modal-inner">
                             <div className="modal-body">
                                 <div className="modal-body-content">
@@ -49,7 +49,7 @@ let EducationModal = ({edit, initial}) => {
                                         <SelectField name="End date (or expected)" id="endMonth" options={months} />
                                         <TextField label="Year" id="endYear" inline={true} />
                                     </div>
-                                    <TagInput label="Skills" id="tags" values={values.tags} desc="Separate skils with commas" />
+                                    <TagInput label="Skills" id="tags" desc="Separate skils with commas" />
                                     <TextBox label="Description" desc="Each line break will be bulleted separately" id="description" />
                                 </div>
                             </div>

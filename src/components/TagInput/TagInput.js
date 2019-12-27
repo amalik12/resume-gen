@@ -9,28 +9,32 @@ class TagInput extends React.Component {
         this.state = { focused: false };
     }
 
-    handleTags(event, arrayHelpers) {
+    handleTags(event, push, remove, form) {
         if (event.key === ',') {
             if (event.target.value.trim())
             {
-                arrayHelpers.push(event.target.value.trim())
+                push(event.target.value.trim())
                 event.target.value = ''
             }
             event.preventDefault()
         } else if (event.key === 'Backspace' && !event.target.value) {
-            arrayHelpers.remove(this.props.values.length - 1)
+            remove(form.values[this.props.id].length - 1)
+            setTimeout(() => {
+                form.validateForm();
+            }, 100);
         }
     }
+    
 
     render() {
         return (
             <FieldArray name={this.props.id}>
-                {(arrayHelpers) => (
+                {({push, remove, form}) => (
                 <div className="textfield-tags-container">
                     {this.props.desc && <span className="textfield-desc">{this.props.desc}</span>}
                     <div className={"textfield tags" + (this.props.disabled ? " disabled" : "") + (this.state.focused ? " focused" : "")}>
-                        <div className="textfield-tags">{this.props.values.map((item, index) => <Tag key={item} onClick={() => arrayHelpers.remove(index)}>{item}</Tag>)}</div>
-                        <input disabled={this.props.disabled} placeholder={this.props.values.length ? '' : this.props.label} onFocus={() => this.setState({ focused: true })} onBlur={(e) => this.setState({ focused: false })} onKeyDown={(e) => this.handleTags(e, arrayHelpers)} className={"textfield-input"} />
+                        <div className="textfield-tags">{form.values[this.props.id].map((item, index) => <Tag key={item} onClick={() => {remove(index); setTimeout(() => {form.validateForm()}, 100)}}>{item}</Tag>)}</div>
+                        <input disabled={this.props.disabled} placeholder={form.values[this.props.id].length ? '' : this.props.label} onFocus={() => this.setState({ focused: true })} onBlur={(e) => this.setState({ focused: false })} onKeyDown={(e) => this.handleTags(e, push, remove, form)} className={"textfield-input"} />
                     </div>
                 </div>
                 )}
