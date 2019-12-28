@@ -1,0 +1,36 @@
+version: '3'
+
+volumes:
+  db_data:
+
+services:
+  db:
+    image: mongo:latest
+    volumes:
+      - db_data:/var/lib/mongodb/
+  
+  redis:
+    image: redis:latest
+
+  server:
+    build: ./
+    ports:
+      - 5000:5000
+    links:
+      - db
+      - redis
+    environment:
+      - TOKEN_SECRET=${TOKEN_SECRET}
+      - MONGODB_URI=${MONGODB_URI}
+
+  app:
+    build: ./app
+    ports:
+      - 3000:3000
+      - 35729:35729
+    links:
+      - server
+    volumes:
+      - ./app/src:/usr/src/app/src
+    environment:
+      - CHOKIDAR_USEPOLLING=${CHOKIDAR_USEPOLLING}
