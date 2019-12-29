@@ -3,10 +3,10 @@ var app = express();
 var bodyParser = require('body-parser');
 const path = require('path');
 var http = require('http').Server(app);
-// var jwt = require('jsonwebtoken');
-// var bcrypt = require('bcryptjs');
+const { User } = require('./models');
 
-const secret = process.env.TOKEN_SECRET;
+require('dotenv').config();
+
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
