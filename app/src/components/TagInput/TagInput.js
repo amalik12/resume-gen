@@ -13,7 +13,7 @@ class TagInput extends React.Component {
         if (event.key === ',') {
             if (event.target.value.trim())
             {
-                push(event.target.value.trim())
+                push(event.target.value.trim().toLowerCase())
                 event.target.value = ''
             }
             event.preventDefault()
