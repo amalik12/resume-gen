@@ -18,7 +18,7 @@ http.listen(port, '0.0.0.0', function () {
 });
 
 app.get('/api/v1/positions', function(req, res){
-  Position.findAll().then(positions => res.status(200).send(positions))
+  Position.findAll().then(positions => res.send(positions))
     .catch(err => {
       console.error(err);
       return res.sendStatus(500);
@@ -26,7 +26,19 @@ app.get('/api/v1/positions', function(req, res){
 })
 
 app.post('/api/v1/positions', function(req, res){
-  Position.create(req.body).then(position => res.status(200).send(position))
+  Position.create(req.body).then(position => res.send(position))
+    .catch(err => {
+      console.error(err);
+      return res.sendStatus(500);
+    })
+})
+
+app.put('/api/v1/positions/:id', function(req, res){
+  Position.update(req.body, {
+    where: {
+      id: req.params.id
+    }
+  }).then(results => res.sendStatus(200))
     .catch(err => {
       console.error(err);
       return res.sendStatus(500);

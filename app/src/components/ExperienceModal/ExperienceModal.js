@@ -13,7 +13,7 @@ import { ModalContext } from '../ModalProvider/ModalProvider';
 
 const ModalConsumer = ModalContext.Consumer;
 
-let ExperienceModal = ({edit, initial, id}) => {
+let ExperienceModal = ({edit, initial, updateData, id}) => {
     const months = ['Month', 'January', 'February', 'March', 'April', 'May',
     'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
@@ -39,13 +39,24 @@ let ExperienceModal = ({edit, initial, id}) => {
                         if (!values.current) {
                             output.endDate = new Date(values.endYear, values.endMonth - 1);
                         }
+                        else {
+                            output.endDate = null;
+                        }
                         var myHeaders = new Headers();
                         myHeaders.append("Content-Type", "application/json");
                         if (edit) {
-                            
+                            fetch('/api/v1/positions/' + id, { method: 'PUT', body: JSON.stringify(output), headers: myHeaders })
+                            .then(result => result.json())
+                            .then(result => {
+                                updateData(prevData => prevData.map(item => {if (item.id === id) return output; return item}));
+                                actions.setSubmitting(false);
+                                hideModal();
+                            })
                         } else {
                             fetch('/api/v1/positions', { method: 'POST', body: JSON.stringify(output), headers: myHeaders })
+                            .then(result => result.json())
                             .then(result => {
+                                updateData(prevData => [...prevData, result]);
                                 actions.setSubmitting(false);
                                 hideModal();
                             })

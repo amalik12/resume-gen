@@ -27,7 +27,7 @@ function useOutsideClick(ref, open, setOpen) {
 
 const ModalConsumer = ModalContext.Consumer;
 
-let HeaderButton = ({ name, setPostions }) => {
+let HeaderButton = ({ name, setPositions }) => {
     const [open, setOpen] = useState(false);
     const wrapperRef = useRef(null);
     useOutsideClick(wrapperRef, open, setOpen);
@@ -37,7 +37,7 @@ let HeaderButton = ({ name, setPostions }) => {
             <div  className="HeaderButton" onClick={e => setOpen(!open)}>
                 <span className="header-button-text">{name}</span>
             </div>
-            {open && <ProfileDropdown items={[['Experience', ExperienceModal, setPostions], ['Education', EducationModal, undefined], ['Projects', ProjectsModal, undefined]]} select={showModal} setOpen={setOpen}/>}
+            {open && <ProfileDropdown items={[['Experience', ExperienceModal, setPositions], ['Education', EducationModal, undefined], ['Projects', ProjectsModal, undefined]]} select={showModal} setOpen={setOpen}/>}
         </div>)}
         </ModalConsumer>
     )

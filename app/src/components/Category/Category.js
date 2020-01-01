@@ -28,7 +28,7 @@ let Category = ({ catTitle, positions, setPositions }) => {
                 if (item.endDate !== null) {
                     end = new Date(item.endDate);
                 }
-                return <Position key={item.id} startDate={start} endDate={end} {...newProps} type={catTitle}/>
+                return <Position key={item.id} startDate={start} endDate={end} updateData={setPositions} {...newProps} type={catTitle}/>
             })}
         </div>
     )

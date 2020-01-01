@@ -8,7 +8,7 @@ import EducationModal from '../EducationModal';
 
 const ModalConsumer = ModalContext.Consumer;
 
-let Position = ({ startDate, endDate, id, createdAt, updatedAt, ...props }) => {
+let Position = ({ startDate, endDate, id, createdAt, updatedAt, updateData, ...props }) => {
     let descItems = props.description.split('\n')
     let options = { year: 'numeric', month: 'short', timeZone: 'UTC' }
     let modal;
@@ -40,7 +40,7 @@ let Position = ({ startDate, endDate, id, createdAt, updatedAt, ...props }) => {
         <ModalConsumer>
         {({showModal}) => (
         <div className="Position">
-            <EditButton className="position-edit-button" onClick={() => showModal(modal, { edit: true, initial: info, id: id })}/>
+            <EditButton className="position-edit-button" onClick={() => showModal(modal, { edit: true, initial: info, id: id, updateData: updateData })}/>
             <div className="position-info">
                 <span className="position-title">{props.title} at </span><span className="position-company">{props.company}</span>
             </div>

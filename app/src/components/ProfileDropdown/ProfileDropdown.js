@@ -16,7 +16,7 @@ let ProfileDropdown = ({items, select, setOpen}) => {
     return (
         <div className="ProfileDropdown" style={{opacity: opacity}}>
             <ul className="profile-dropdown-list">
-                {items.map((item) => <li key={item[0]} onClick={e => {select(item[1], {...itemProps, setData: item[2]}); setOpen(false)}} className="profile-dropdown-item">{item[0]}</li>)}
+                {items.map((item) => <li key={item[0]} onClick={e => {select(item[1], {updateData: item[2], ...itemProps}); setOpen(false)}} className="profile-dropdown-item">{item[0]}</li>)}
             </ul>
         </div>
     )
