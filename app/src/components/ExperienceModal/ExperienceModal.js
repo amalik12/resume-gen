@@ -45,6 +45,7 @@ let ExperienceModal = ({edit, initial, updateData, id}) => {
                         var myHeaders = new Headers();
                         myHeaders.append("Content-Type", "application/json");
                         if (edit) {
+                            output.id = id;
                             fetch('/api/v1/positions/' + id, { method: 'PUT', body: JSON.stringify(output), headers: myHeaders })
                             .then(result => result.json())
                             .then(result => {
