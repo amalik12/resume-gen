@@ -41,6 +41,13 @@
   margin-right: 20px;
 }
 
+.profile-details {
+  display: flex;
+  margin-top: 100px;
+  margin-left: 45px;
+  margin-right: 45px;
+}
+
 @-webkit-keyframes load {
   0% {
     -webkit-transform: rotate(0deg);

@@ -2,6 +2,10 @@
     margin-right: 45px;
 }
 
+.Category {
+    flex-grow: 1;
+}
+
 .category-title {
     font-size: 16px;
     font-weight: 600;

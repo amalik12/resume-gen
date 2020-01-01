@@ -1,14 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Category.css'
 import Position from '../Position/Position';
 
-let Category = ({ title }) => {
+let Category = ({ catTitle, positions, setPositions }) => {
+    
+    useEffect(() => {
+        fetch('/api/v1/positions')
+        .then(result => result.json())
+        .then(json => setPositions(json))
+        .catch(err => console.error(err))
+    }, [setPositions])
     return (
         <div className="Category">
-            <div className="category-title">{title}</div>
-            <Position title="Software Engineer" company="Bloomberg"
-            startDate={new Date(Date.UTC(2018, 9))} tags={['c++', 'python']} type={title}
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel efficitur lectus. Nam ut tempus nisi, eu posuere justo. In porttitor euismod dolor, gravida mollis ex gravida vitae. Quisque urna ante, dignissim sed aliquet ut, laoreet ac enim."/>
+            <div className="category-title">{catTitle}</div>
+            {positions.sort((a, b) => {
+                if (a.startDate === b.startDate) {
+                    return 0
+                } else if (a.startDate < b.startDate) {
+                    return 1
+                } else {
+                    return -1
+                }
+            }).map((item, index) => {
+                let {startDate, endDate, ...newProps} = item;
+                let start = new Date(item.startDate);
+                let end = null;
+                if (item.endDate !== null) {
+                    end = new Date(item.endDate);
+                }
+                return <Position key={item.id} startDate={start} endDate={end} {...newProps} type={catTitle}/>
+            })}
         </div>
     )
 }

@@ -2,11 +2,11 @@ import React from 'react'
 import HeaderButton from '../HeaderButton'
 import './PageHeader.css'
 
-let PageHeader = ({title}) => {
+let PageHeader = ({title, setPositions}) => {
     return (
         <div className="PageHeader">
             <span className="page-title">{title}</span>
-            <HeaderButton name="Add Content"></HeaderButton>
+            <HeaderButton name="Add Content" setPositions={setPositions}/>
         </div>
     )
 }

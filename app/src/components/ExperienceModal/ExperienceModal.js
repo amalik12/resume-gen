@@ -13,7 +13,7 @@ import { ModalContext } from '../ModalProvider/ModalProvider';
 
 const ModalConsumer = ModalContext.Consumer;
 
-let ExperienceModal = ({edit, initial}) => {
+let ExperienceModal = ({edit, initial, id}) => {
     const months = ['Month', 'January', 'February', 'March', 'April', 'May',
     'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
@@ -33,8 +33,26 @@ let ExperienceModal = ({edit, initial}) => {
                     initialValues={initialValues}
                     validationSchema={ExperienceSchema}
                     validateOnMount={true}
+                    onSubmit={(values, actions) => {
+                        let { startYear, startMonth, endYear, endMonth, ...output } = values;
+                        output.startDate = new Date(values.startYear, values.startMonth - 1);
+                        if (!values.current) {
+                            output.endDate = new Date(values.endYear, values.endMonth - 1);
+                        }
+                        var myHeaders = new Headers();
+                        myHeaders.append("Content-Type", "application/json");
+                        if (edit) {
+                            
+                        } else {
+                            fetch('/api/v1/positions', { method: 'POST', body: JSON.stringify(output), headers: myHeaders })
+                            .then(result => {
+                                actions.setSubmitting(false);
+                                hideModal();
+                            })
+                        }
+                    }}
                 >
-                    {({ values, isValid }) => (
+                    {({ values, isValid, isSubmitting }) => (
                         <Form className="modal-inner">
                             <div className="modal-body">
                                 <div className="modal-body-content">
@@ -56,7 +74,7 @@ let ExperienceModal = ({edit, initial}) => {
                                     <TextBox label="Description" desc="Each line break will be bulleted separately" id="description" />
                                 </div>
                             </div>
-                            <FormFooter loading={false} enabled={isValid} delete={edit} hide={hideModal}/>
+                            <FormFooter loading={isSubmitting} enabled={isValid} delete={edit} hide={hideModal}/>
                         </Form>
                     )}
                 </Formik>

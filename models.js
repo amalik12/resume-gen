@@ -35,7 +35,7 @@ module.exports = {
         },
     }, {}),
 
-    Experience: sequelize.define('experience', {
+    Position: sequelize.define('position', {
         // attributes
         startDate: {
             type: Sequelize.DATEONLY,
