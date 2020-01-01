@@ -8,7 +8,7 @@ let FormFooter = (props) => {
             <Button label="Cancel" onClick={props.hide} buttonStyle="text" />
             {props.delete &&
                 <div className="modal-delete-button">
-                    <Button label="Delete" buttonStyle="outline delete" />
+                    <Button label="Delete" onClick={props.onDelete} buttonStyle="outline delete" />
                 </div>}
         </div>
     )

@@ -45,6 +45,18 @@ app.put('/api/v1/positions/:id', function(req, res){
     })
 })
 
+app.delete('/api/v1/positions/:id', function(req, res){
+  Position.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(results => res.sendStatus(200))
+    .catch(err => {
+      console.error(err);
+      return res.sendStatus(500);
+    })
+})
+
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });

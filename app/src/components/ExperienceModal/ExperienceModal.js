@@ -13,6 +13,16 @@ import { ModalContext } from '../ModalProvider/ModalProvider';
 
 const ModalConsumer = ModalContext.Consumer;
 
+function deletePosition(id, updateData, hideModal) {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    fetch('/api/v1/positions/' + id, { method: 'DELETE', headers: myHeaders })
+    .then(result => {
+        updateData(prevData => prevData.filter(item => item.id !== id));
+        hideModal();
+    })
+}
+
 let ExperienceModal = ({edit, initial, updateData, id}) => {
     const months = ['Month', 'January', 'February', 'March', 'April', 'May',
     'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -47,7 +57,6 @@ let ExperienceModal = ({edit, initial, updateData, id}) => {
                         if (edit) {
                             output.id = id;
                             fetch('/api/v1/positions/' + id, { method: 'PUT', body: JSON.stringify(output), headers: myHeaders })
-                            .then(result => result.json())
                             .then(result => {
                                 updateData(prevData => prevData.map(item => {if (item.id === id) return output; return item}));
                                 actions.setSubmitting(false);
@@ -86,7 +95,7 @@ let ExperienceModal = ({edit, initial, updateData, id}) => {
                                     <TextBox label="Description" desc="Each line break will be bulleted separately" id="description" />
                                 </div>
                             </div>
-                            <FormFooter loading={isSubmitting} enabled={isValid} delete={edit} hide={hideModal}/>
+                            <FormFooter loading={isSubmitting} enabled={isValid} delete={edit} onDelete={() => deletePosition(id, updateData, hideModal)} hide={hideModal}/>
                         </Form>
                     )}
                 </Formik>
