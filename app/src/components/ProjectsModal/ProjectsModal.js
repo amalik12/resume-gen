@@ -42,7 +42,7 @@ let ProjectsModal = ({edit, initial}) => {
                                         <TextField label="Website" id="website" inline={true} />
                                     </div>
                                     <div className="form-row">
-                                        <SelectField name="Start date" id="startMonth" options={months} />
+                                        <SelectField name="Release date" id="startMonth" options={months} />
                                         <TextField label="Year" id="startYear" inline={true} />
                                     </div>
                                     <TagInput label="Skills" id="tags" desc="Separate skils with commas" />
