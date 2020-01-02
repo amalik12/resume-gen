@@ -8,11 +8,12 @@ import FormFooter from '../FormFooter';
 import { EducationSchema } from '../../form-schemas';
 import { Formik, Form } from 'formik';
 import { ModalContext } from '../ModalProvider/ModalProvider';
+import { deleteItem, updateItem, createItem } from '../../db-actions';
 
 
 const ModalConsumer = ModalContext.Consumer;
 
-let EducationModal = ({edit, initial}) => {
+let EducationModal = ({edit, initial, updateData, id}) => {
     const months = ['Month', 'January', 'February', 'March', 'April', 'May',
     'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
@@ -32,6 +33,28 @@ let EducationModal = ({edit, initial}) => {
                     initialValues={initialValues}
                     validationSchema={EducationSchema}
                     validateOnMount={true}
+                    onSubmit={(values, actions) => {
+                        let { startYear, startMonth, endYear, endMonth, ...output } = values;
+                        output.startDate = new Date(values.startYear, values.startMonth - 1);
+                        output.endDate = new Date(values.endYear, values.endMonth - 1);
+                        
+                        if (edit) {
+                            output.id = id;
+                            updateItem(id, 'education', output)
+                            .then(result => {
+                                updateData(prevData => prevData.map(item => {if (item.id === id) return output; return item}));
+                                actions.setSubmitting(false);
+                                hideModal();
+                            })
+                        } else {
+                            createItem('education', output)
+                            .then(result => {
+                                updateData(prevData => [...prevData, result]);
+                                actions.setSubmitting(false);
+                                hideModal();
+                            })
+                        }
+                    }}
                 >
                     {({ isValid }) => (
                         <Form className="modal-inner">
@@ -56,7 +79,11 @@ let EducationModal = ({edit, initial}) => {
                                     <TextBox label="Description" desc="Each line break will be bulleted separately" id="description" />
                                 </div>
                             </div>
-                            <FormFooter loading={false} enabled={isValid} delete={edit} hide={hideModal}/>
+                            <FormFooter loading={false} enabled={isValid} delete={edit} onDelete={() => deleteItem(id, 'education')
+                            .then(result => {
+                                updateData(prevData => prevData.filter(item => item.id !== id));
+                                hideModal();
+                            })} hide={hideModal}/>
                         </Form>
                     )}
                 </Formik>

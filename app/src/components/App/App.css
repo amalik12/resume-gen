@@ -48,6 +48,19 @@
   margin-right: 30px;
 }
 
+.PageHeader {
+  padding: 15px 30px;
+  border-bottom: 1px solid #afafaf;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: 600;
+}
+
 @-webkit-keyframes load {
   0% {
     -webkit-transform: rotate(0deg);

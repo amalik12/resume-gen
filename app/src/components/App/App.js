@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import PageHeader from '../PageHeader';
 import './App.css';
 import ModalProvider from '../ModalProvider';
 import ModalRoot from '../ModalRoot';
 import ProfileInfo from '../ProfileInfo';
 import Category from '../Category';
+import HeaderButton from '../HeaderButton/HeaderButton';
 
 function App() {
   const [positions, setPositions] = useState([])
@@ -13,7 +13,10 @@ function App() {
     <ModalProvider>
       <div className="App">
         <ModalRoot/>
-        <PageHeader title="My Profile" setPositions={setPositions}/>
+        <div className="PageHeader">
+            <span className="page-title">My Profile</span>
+            <HeaderButton name="Add Content" setPositions={setPositions} setEducation={setEducation}/>
+        </div>
         <div className="Profile">
             <ProfileInfo name="Adisa Malik" website="http://adisamalik.com" email="adisamalik@gmail.com"/>
             <div className="profile-details">

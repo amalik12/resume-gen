@@ -9,17 +9,10 @@ import FormFooter from '../FormFooter';
 import { ExperienceSchema } from '../../form-schemas';
 import { Formik, Form } from 'formik';
 import { ModalContext } from '../ModalProvider/ModalProvider';
+import { deleteItem, updateItem, createItem } from '../../db-actions';
 
 
 const ModalConsumer = ModalContext.Consumer;
-
-function deletePosition(id, updateData, hideModal) {
-    fetch('/api/v1/positions/' + id, { method: 'DELETE', headers: {"Content-Type": "application/json"} })
-    .then(result => {
-        updateData(prevData => prevData.filter(item => item.id !== id));
-        hideModal();
-    })
-}
 
 let ExperienceModal = ({edit, initial, updateData, id}) => {
     const months = ['Month', 'January', 'February', 'March', 'April', 'May',
@@ -52,15 +45,14 @@ let ExperienceModal = ({edit, initial, updateData, id}) => {
                         }
                         if (edit) {
                             output.id = id;
-                            fetch('/api/v1/positions/' + id, { method: 'PUT', body: JSON.stringify(output), headers: {"Content-Type": "application/json"} })
+                            updateItem(id, 'positions', output)
                             .then(result => {
                                 updateData(prevData => prevData.map(item => {if (item.id === id) return output; return item}));
                                 actions.setSubmitting(false);
                                 hideModal();
                             })
                         } else {
-                            fetch('/api/v1/positions', { method: 'POST', body: JSON.stringify(output), headers: {"Content-Type": "application/json"} })
-                            .then(result => result.json())
+                            createItem('positions', output)
                             .then(result => {
                                 updateData(prevData => [...prevData, result]);
                                 actions.setSubmitting(false);
@@ -91,7 +83,12 @@ let ExperienceModal = ({edit, initial, updateData, id}) => {
                                     <TextBox label="Description" desc="Each line break will be bulleted separately" id="description" />
                                 </div>
                             </div>
-                            <FormFooter loading={isSubmitting} enabled={isValid} delete={edit} onDelete={() => deletePosition(id, updateData, hideModal)} hide={hideModal}/>
+                            <FormFooter loading={isSubmitting} enabled={isValid} delete={edit}
+                            onDelete={() => deleteItem(id, 'positions')
+                            .then(result => {
+                                updateData(prevData => prevData.filter(item => item.id !== id));
+                                hideModal();
+                            })} hide={hideModal}/>
                         </Form>
                     )}
                 </Formik>
