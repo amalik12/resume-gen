@@ -17,7 +17,7 @@ let EducationModal = ({edit, initial}) => {
     'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
     let initialValues = {
-        company: '', title: '', startMonth: 0, startYear: '', 
+        school: '', degree: '', major: '', startMonth: 0, startYear: '', 
         endMonth: 0, endYear: '', description: '', tags: []
     }
 
@@ -38,8 +38,11 @@ let EducationModal = ({edit, initial}) => {
                             <div className="modal-body">
                                 <div className="modal-body-content">
                                     <div className="form-row">
-                                        <TextField label="School name" id="company" inline={true} />
-                                        <TextField label="Degree and major" id="title" inline={true} />
+                                        <TextField label="School name" id="school" inline={true} />
+                                    </div>
+                                    <div className="form-row">
+                                        <TextField label="Degree" id="degree" inline={true} />
+                                        <TextField label="Major" id="major" inline={true} />
                                     </div>
                                     <div className="form-row">
                                         <SelectField name="Start date" id="startMonth" options={months} />

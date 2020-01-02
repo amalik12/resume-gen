@@ -58,7 +58,37 @@ module.exports = {
         tags: {
             type: Sequelize.ARRAY(Sequelize.TEXT)
         },
-    }, {})
+    }),
+
+    Education: sequelize.define('education', {
+        // attributes
+        startDate: {
+            type: Sequelize.DATEONLY,
+            allowNull: false
+        },
+        endDate: {
+            type: Sequelize.DATEONLY,
+            allowNull: false
+        },
+        degree: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        major: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        school: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        description: {
+            type: Sequelize.STRING
+        },
+        tags: {
+            type: Sequelize.ARRAY(Sequelize.TEXT)
+        },
+    })
 }
 
 sequelize.sync({ alter: true }).then(() => {

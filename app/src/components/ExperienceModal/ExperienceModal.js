@@ -14,9 +14,7 @@ import { ModalContext } from '../ModalProvider/ModalProvider';
 const ModalConsumer = ModalContext.Consumer;
 
 function deletePosition(id, updateData, hideModal) {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    fetch('/api/v1/positions/' + id, { method: 'DELETE', headers: myHeaders })
+    fetch('/api/v1/positions/' + id, { method: 'DELETE', headers: {"Content-Type": "application/json"} })
     .then(result => {
         updateData(prevData => prevData.filter(item => item.id !== id));
         hideModal();
@@ -52,18 +50,16 @@ let ExperienceModal = ({edit, initial, updateData, id}) => {
                         else {
                             output.endDate = null;
                         }
-                        var myHeaders = new Headers();
-                        myHeaders.append("Content-Type", "application/json");
                         if (edit) {
                             output.id = id;
-                            fetch('/api/v1/positions/' + id, { method: 'PUT', body: JSON.stringify(output), headers: myHeaders })
+                            fetch('/api/v1/positions/' + id, { method: 'PUT', body: JSON.stringify(output), headers: {"Content-Type": "application/json"} })
                             .then(result => {
                                 updateData(prevData => prevData.map(item => {if (item.id === id) return output; return item}));
                                 actions.setSubmitting(false);
                                 hideModal();
                             })
                         } else {
-                            fetch('/api/v1/positions', { method: 'POST', body: JSON.stringify(output), headers: myHeaders })
+                            fetch('/api/v1/positions', { method: 'POST', body: JSON.stringify(output), headers: {"Content-Type": "application/json"} })
                             .then(result => result.json())
                             .then(result => {
                                 updateData(prevData => [...prevData, result]);

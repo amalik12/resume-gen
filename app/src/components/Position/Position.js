@@ -11,16 +11,27 @@ const ModalConsumer = ModalContext.Consumer;
 let Position = ({ startDate, endDate, id, createdAt, updatedAt, updateData, ...props }) => {
     let descItems = props.description.split('\n')
     let options = { year: 'numeric', month: 'short', timeZone: 'UTC' }
-    let modal;
+    let modal = null;
+    let display = {
+        title: '',
+        org: '',
+        tags: []
+    }
+
     switch (props.type) {
-        case 'experience':
+        case 'positions':
             modal = ExperienceModal;
+            display.title = props.title;
+            display.org = props.company;
+            display.tags = props.tags;
             break;
         case 'education':
             modal = EducationModal;
+            display.title = props.degree + ', ' + props.major;
+            display.org = props.school;
+            display.tags = props.tags;
             break;
         default:
-            modal = null;
             break;
     }
 
@@ -42,10 +53,10 @@ let Position = ({ startDate, endDate, id, createdAt, updatedAt, updateData, ...p
         <div className="Position">
             <EditButton className="position-edit-button" onClick={() => showModal(modal, { edit: true, initial: info, id: id, updateData: updateData })}/>
             <div className="position-info">
-                <span className="position-title">{props.title} at </span><span className="position-company">{props.company}</span>
+                <span className="position-title">{display.title} at </span><span className="position-org">{display.org}</span>
             </div>
             <div className="position-dates">{startDate.toLocaleDateString(undefined, options) + " - " + (endDate ? endDate.toLocaleDateString(undefined, options) : "Present")}</div>
-            {props.tags.map((item) => <Tag key={item}>{item}</Tag>)}
+            {display.tags.map((item) => <Tag key={item}>{item}</Tag>)}
             <ul className="position-description-container">
                 {descItems.map((item, index) => item && <li key={index} className="position-description">{item}</li>)}
             </ul>

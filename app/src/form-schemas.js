@@ -47,10 +47,12 @@ export const ExperienceSchema = Yup.object().shape({
   });
 
 export const EducationSchema = Yup.object().shape({
-    company: Yup.string()
+    school: Yup.string()
         .required('School name is required'),
-    title: Yup.string()
+    degree: Yup.string()
         .required('Degree is required'),
+    major: Yup.string()
+        .required('Major is required'),
     startMonth: Yup.number()
         .required('Start month is required')
         .integer()

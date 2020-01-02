@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 const path = require('path');
 var http = require('http').Server(app);
-const { Position } = require('./models');
+const { Position, Education } = require('./models');
 
 require('dotenv').config();
 
@@ -47,6 +47,46 @@ app.put('/api/v1/positions/:id', function(req, res){
 
 app.delete('/api/v1/positions/:id', function(req, res){
   Position.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(results => res.sendStatus(200))
+    .catch(err => {
+      console.error(err);
+      return res.sendStatus(500);
+    })
+})
+
+app.get('/api/v1/education', function(req, res){
+  Education.findAll().then(education => res.send(education))
+    .catch(err => {
+      console.error(err);
+      return res.sendStatus(500);
+    })
+})
+
+app.post('/api/v1/education', function(req, res){
+  Education.create(req.body).then(education => res.send(education))
+    .catch(err => {
+      console.error(err);
+      return res.sendStatus(500);
+    })
+})
+
+app.put('/api/v1/education/:id', function(req, res){
+  Education.update(req.body, {
+    where: {
+      id: req.params.id
+    }
+  }).then(results => res.sendStatus(200))
+    .catch(err => {
+      console.error(err);
+      return res.sendStatus(500);
+    })
+})
+
+app.delete('/api/v1/education/:id', function(req, res){
+  Education.destroy({
     where: {
       id: req.params.id
     }
