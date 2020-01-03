@@ -12,7 +12,6 @@ sequelize.authenticate().then(() => {
 
 module.exports = {
     User: sequelize.define('user', {
-        // attributes
         firstName: {
             type: Sequelize.STRING,
             allowNull: false
@@ -33,10 +32,9 @@ module.exports = {
         location: {
             type: Sequelize.STRING
         },
-    }, {}),
+    }),
 
     Position: sequelize.define('position', {
-        // attributes
         startDate: {
             type: Sequelize.DATEONLY,
             allowNull: false
@@ -61,7 +59,6 @@ module.exports = {
     }),
 
     Education: sequelize.define('education', {
-        // attributes
         startDate: {
             type: Sequelize.DATEONLY,
             allowNull: false
@@ -81,6 +78,26 @@ module.exports = {
         school: {
             type: Sequelize.STRING,
             allowNull: false
+        },
+        description: {
+            type: Sequelize.STRING
+        },
+        tags: {
+            type: Sequelize.ARRAY(Sequelize.TEXT)
+        },
+    }),
+
+    Project: sequelize.define('project', {
+        startDate: {
+            type: Sequelize.DATEONLY,
+            allowNull: false
+        },
+        name: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        website: {
+            type: Sequelize.STRING
         },
         description: {
             type: Sequelize.STRING

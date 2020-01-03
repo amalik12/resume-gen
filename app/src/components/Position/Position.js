@@ -5,6 +5,7 @@ import EditButton from '../EditButton';
 import { ModalContext } from '../ModalProvider/ModalProvider';
 import ExperienceModal from '../ExperienceModal';
 import EducationModal from '../EducationModal';
+import ProjectsModal from '../ProjectsModal/ProjectsModal';
 
 const ModalConsumer = ModalContext.Consumer;
 
@@ -31,6 +32,11 @@ let Position = ({ startDate, endDate, id, createdAt, updatedAt, updateData, ...p
             display.org = props.school;
             display.tags = props.tags;
             break;
+        case 'projects':
+            modal = ProjectsModal
+            display.title = props.name;
+            display.tags = props.tags;
+            break;
         default:
             break;
     }
@@ -53,7 +59,7 @@ let Position = ({ startDate, endDate, id, createdAt, updatedAt, updateData, ...p
         <div className="Position">
             <EditButton className="position-edit-button" onClick={() => showModal(modal, { edit: true, initial: info, id: id, updateData: updateData })}/>
             <div className="position-info">
-                <span className="position-title">{display.title} at </span><span className="position-org">{display.org}</span>
+                <span className="position-title">{display.title}{props.type !== 'projects' && ' at '}</span><span className="position-org">{display.org}</span>
             </div>
             <div className="position-dates">{startDate.toLocaleDateString(undefined, options) + " - " + (endDate ? endDate.toLocaleDateString(undefined, options) : "Present")}</div>
             {display.tags.map((item) => <Tag key={item}>{item}</Tag>)}

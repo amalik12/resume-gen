@@ -1,9 +1,11 @@
-.Category:nth-child(2n-1) {
-    margin-right: 45px;
+.Category:last-child {
+    margin-right: 0px;
 }
 
 .Category {
     flex-grow: 1;
+    flex-basis: 0;
+    margin-right: 45px;
 }
 
 .category-title {

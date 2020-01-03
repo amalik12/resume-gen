@@ -83,7 +83,7 @@ export const EducationSchema = Yup.object().shape({
 });
 
 export const ProjectSchema = Yup.object().shape({
-    company: Yup.string()
+    name: Yup.string()
         .required('Project name is required'),
     startMonth: Yup.number()
         .required('Start month is required')

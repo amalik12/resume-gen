@@ -8,17 +8,16 @@ import FormFooter from '../FormFooter';
 import { Formik, Form } from 'formik';
 import { ModalContext } from '../ModalProvider/ModalProvider';
 import { ProjectSchema } from '../../form-schemas';
-
+import { updateItem, createItem, deleteItem } from '../../db-actions';
 
 const ModalConsumer = ModalContext.Consumer;
 
-let ProjectsModal = ({edit, initial}) => {
+let ProjectsModal = ({edit, initial, updateData, id}) => {
     const months = ['Month', 'January', 'February', 'March', 'April', 'May',
     'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
     let initialValues = {
-        company: '', title: '', startMonth: 0, startYear: '', 
-        endMonth: 0, endYear: '', current: false, description: '', tags: []
+        name: '', website: '', startMonth: 0, startYear: '', description: '', tags: []
     }
 
     if (initial !== undefined) {
@@ -32,13 +31,34 @@ let ProjectsModal = ({edit, initial}) => {
                     initialValues={initialValues}
                     validationSchema={ProjectSchema}
                     validateOnMount={true}
+                    onSubmit={(values, actions) => {
+                        let { startYear, startMonth, ...output } = values;
+                        output.startDate = new Date(values.startYear, values.startMonth - 1);
+                        
+                        if (edit) {
+                            output.id = id;
+                            updateItem(id, 'projects', output)
+                            .then(result => {
+                                updateData(prevData => prevData.map(item => {if (item.id === id) return output; return item}));
+                                actions.setSubmitting(false);
+                                hideModal();
+                            })
+                        } else {
+                            createItem('projects', output)
+                            .then(result => {
+                                updateData(prevData => [...prevData, result]);
+                                actions.setSubmitting(false);
+                                hideModal();
+                            })
+                        }
+                    }}
                 >
                     {({ isValid }) => (
                         <Form className="modal-inner">
                             <div className="modal-body">
                                 <div className="modal-body-content">
                                     <div className="form-row">
-                                        <TextField label="Project name" id="company" inline={true} />
+                                        <TextField label="Project name" id="name" inline={true} />
                                         <TextField label="Website" id="website" inline={true} />
                                     </div>
                                     <div className="form-row">
@@ -49,7 +69,11 @@ let ProjectsModal = ({edit, initial}) => {
                                     <TextBox label="Description" desc="Each line break will be bulleted separately" id="description" />
                                 </div>
                             </div>
-                            <FormFooter loading={false} enabled={isValid} delete={edit} hide={hideModal}/>
+                            <FormFooter loading={false} enabled={isValid} delete={edit} hide={hideModal} onDelete={() => deleteItem(id, 'projects')
+                            .then(result => {
+                                updateData(prevData => prevData.filter(item => item.id !== id));
+                                hideModal();
+                            })}/>
                         </Form>
                     )}
                 </Formik>
