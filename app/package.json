@@ -7,7 +7,7 @@
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-modal": "^3.11.1",
-    "react-scripts": "3.1.2",
+    "react-scripts": "5.0.1",
     "yup": "^0.27.0"
   },
   "scripts": {
@@ -18,7 +18,58 @@
     "create_index": "python src/indexcreate.py"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "airbnb",
+      "prettier",
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended"
+    ],
+    "plugins": [
+      "prettier",
+      "react"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error"
+      ],
+      "func-style": 0,
+      "import/no-named-as-default": 0,
+      "react/destructuring-assignment": [
+        "warn",
+        "always",
+        {
+          "ignoreClassFields": true
+        }
+      ],
+      "react/jsx-filename-extension": 0,
+      "react/prop-types": 0,
+      "jsx-a11y/label-has-associated-control": 0,
+      "jsx-a11y/label-has-for": "warn",
+      "jsx-a11y/media-has-caption": "off",
+      "react/jsx-one-expression-per-line": "warn",
+      "react/jsx-no-target-blank": "off",
+      "no-iterator": 0,
+      "no-restricted-syntax": [
+        "error",
+        {
+          "selector": "ForInStatement",
+          "message": "for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array."
+        },
+        {
+          "selector": "LabeledStatement",
+          "message": "Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand."
+        },
+        {
+          "selector": "WithStatement",
+          "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
+        }
+      ]
+    },
+    "env": {
+      "browser": true,
+      "jest": true
+    }
   },
   "proxy": "http://server:5000",
   "browserslist": {
@@ -32,5 +83,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^2.8.3"
   }
 }
