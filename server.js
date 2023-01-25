@@ -18,7 +18,7 @@ http.listen(port, '0.0.0.0', function () {
 });
 
 app.get('/api/v1/positions', function(req, res){
-  Position.findAll().then(positions => res.send(positions))
+  Position.findAll({ order: [['startDate', 'DESC']] }).then(positions => res.send(positions))
     .catch(err => {
       console.error(err);
       return res.sendStatus(500);
@@ -58,7 +58,7 @@ app.delete('/api/v1/positions/:id', function(req, res){
 })
 
 app.get('/api/v1/education', function(req, res){
-  Education.findAll().then(education => res.send(education))
+  Education.findAll({ order: [['startDate', 'DESC']] }).then(education => res.send(education))
     .catch(err => {
       console.error(err);
       return res.sendStatus(500);
@@ -98,7 +98,7 @@ app.delete('/api/v1/education/:id', function(req, res){
 })
 
 app.get('/api/v1/projects', function(req, res){
-  Project.findAll().then(projects => res.send(projects))
+  Project.findAll({ order: [['startDate', 'DESC']] }).then(projects => res.send(projects))
     .catch(err => {
       console.error(err);
       return res.sendStatus(500);
