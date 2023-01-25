@@ -96,8 +96,8 @@ function ExperienceModal({ edit, initial, updateData, id }) {
                 <div className="modal-body">
                   <div className="modal-body-content">
                     <div className="form-row">
-                      <TextField label="Company name" id="company" inline />
                       <TextField label="Title" id="title" inline />
+                      <TextField label="Company name" id="company" inline />
                     </div>
                     <div className="form-row">
                       <SelectField
