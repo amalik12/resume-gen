@@ -51,7 +51,7 @@ module.exports = {
             allowNull: false
         },
         description: {
-            type: Sequelize.STRING
+            type: Sequelize.TEXT
         },
         tags: {
             type: Sequelize.ARRAY(Sequelize.TEXT)
@@ -80,7 +80,7 @@ module.exports = {
             allowNull: false
         },
         description: {
-            type: Sequelize.STRING
+            type: Sequelize.TEXT
         },
         tags: {
             type: Sequelize.ARRAY(Sequelize.TEXT)
@@ -100,7 +100,7 @@ module.exports = {
             type: Sequelize.STRING
         },
         description: {
-            type: Sequelize.STRING
+            type: Sequelize.TEXT
         },
         tags: {
             type: Sequelize.ARRAY(Sequelize.TEXT)
