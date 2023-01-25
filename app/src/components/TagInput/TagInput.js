@@ -1,6 +1,7 @@
 import React from "react";
 import { FieldArray } from "formik";
 import Tag from "../Tag";
+import "../TextField/TextField.css";
 
 class TagInput extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class TagInput extends React.Component {
                 this.props.disabled ? " disabled" : ""
               }${this.state.focused ? " focused" : ""}`}
             >
-              <div className="textfield-tags">
+              <div className="textfield-tag-list">
                 {form.values[this.props.id].map((item, index) => (
                   <Tag
                     key={item}

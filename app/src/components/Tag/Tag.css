@@ -10,6 +10,7 @@
     margin-right: 15px;
     margin-bottom: 12px;
     transition: 0.3s;
+    white-space: nowrap;
 }
 
 .Tag.clickable {
