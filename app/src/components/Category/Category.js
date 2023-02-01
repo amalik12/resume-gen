@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Category.css";
 import Position from "../Position/Position";
 import { ModalContext } from "../ModalProvider/ModalProvider";
@@ -6,8 +6,7 @@ import ExperienceModal from "../ExperienceModal";
 import EducationModal from "../EducationModal";
 import ProjectsModal from "../ProjectsModal/ProjectsModal";
 
-function Category({ catTitle }) {
-  const [items, setItems] = useState([]);
+function Category({ catTitle, items, setItems }) {
   useEffect(() => {
     fetch(`/api/v1/${catTitle}`)
       .then((result) => result.json())
