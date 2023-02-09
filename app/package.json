@@ -32,7 +32,10 @@
     ],
     "rules": {
       "prettier/prettier": [
-        "error"
+        "error",
+        {
+          "singleQuote": true
+        }
       ],
       "func-style": 0,
       "import/no-named-as-default": 0,

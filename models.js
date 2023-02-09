@@ -92,6 +92,12 @@ module.exports = {
             type: Sequelize.DATEONLY,
             allowNull: false
         },
+        endDate: {
+            type: Sequelize.DATEONLY
+        },
+        hasEndDate: {
+            type: Sequelize.BOOLEAN,
+        },
         name: {
             type: Sequelize.STRING,
             allowNull: false

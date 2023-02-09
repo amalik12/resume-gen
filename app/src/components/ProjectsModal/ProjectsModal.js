@@ -9,6 +9,7 @@ import FormFooter from "../FormFooter";
 import { ModalContext } from "../ModalProvider/ModalProvider";
 import { ProjectSchema } from "../../form-schemas";
 import { updateItem, createItem, deleteItem } from "../../db-actions";
+import CheckField from "../CheckField";
 
 const ModalConsumer = ModalContext.Consumer;
 
@@ -34,6 +35,10 @@ function ProjectsModal({ edit, initial, updateData, id }) {
     website: "",
     startMonth: 0,
     startYear: "",
+    endMonth: 0,
+    endYear: "",
+    hasEndDate: false,
+    current: false,
     description: "",
     tags: [],
   };
@@ -48,18 +53,25 @@ function ProjectsModal({ edit, initial, updateData, id }) {
         <Modal
           showModal={isOpen}
           submitted={false}
-          title={`${edit ? "Edit" : "Add"  } Project`}
+          title={`${edit ? "Edit" : "Add"} Project`}
         >
           <Formik
             initialValues={initialValues}
             validationSchema={ProjectSchema}
             validateOnMount
             onSubmit={(values, actions) => {
-              const { startYear, startMonth, ...output } = values;
+              const { startYear, startMonth, endYear, endMonth, ...output } =
+                values;
               output.startDate = new Date(
                 values.startYear,
                 values.startMonth - 1
               );
+
+              if (values.hasEndDate && !values.current) {
+                output.endDate = new Date(values.endYear, values.endMonth - 1);
+              } else {
+                output.endDate = null;
+              }
 
               if (edit) {
                 output.id = id;
@@ -82,7 +94,7 @@ function ProjectsModal({ edit, initial, updateData, id }) {
               }
             }}
           >
-            {({ isValid }) => (
+            {({ isValid, values }) => (
               <Form className="modal-inner">
                 <div className="modal-body">
                   <div className="modal-body-content">
@@ -92,12 +104,40 @@ function ProjectsModal({ edit, initial, updateData, id }) {
                     </div>
                     <div className="form-row">
                       <SelectField
-                        name="Release date"
+                        name={values.hasEndDate ? "Start date" : "Release date"}
                         id="startMonth"
                         options={months}
                       />
                       <TextField label="Year" id="startYear" inline />
+                      {values.hasEndDate && (
+                        <>
+                          <div className="form-divider" />
+                          <SelectField
+                            name="Release date"
+                            id="endMonth"
+                            options={months}
+                            disabled={values.current}
+                          />
+                          <TextField
+                            label="Year"
+                            id="endYear"
+                            disabled={values.current}
+                            inline
+                          />
+                        </>
+                      )}
                     </div>
+                    <div className="form-row">
+                      <CheckField desc="Include a start date" id="hasEndDate" />
+                    </div>
+                    {values.hasEndDate && (
+                      <div className="form-row">
+                        <CheckField
+                          desc="I'm currently working on this"
+                          id="current"
+                        />
+                      </div>
+                    )}
                     <TagInput
                       label="Skills"
                       id="tags"

@@ -1,11 +1,11 @@
-import React from "react";
-import "./Position.css";
-import Tag from "../Tag";
-import EditButton from "../EditButton";
-import { ModalContext } from "../ModalProvider/ModalProvider";
-import ExperienceModal from "../ExperienceModal";
-import EducationModal from "../EducationModal";
-import ProjectsModal from "../ProjectsModal/ProjectsModal";
+import React from 'react';
+import './Position.css';
+import Tag from '../Tag';
+import EditButton from '../EditButton';
+import { ModalContext } from '../ModalProvider/ModalProvider';
+import ExperienceModal from '../ExperienceModal';
+import EducationModal from '../EducationModal';
+import ProjectsModal from '../ProjectsModal/ProjectsModal';
 
 const ModalConsumer = ModalContext.Consumer;
 
@@ -18,29 +18,29 @@ function Position({
   updateData,
   ...props
 }) {
-  const descItems = props.description.split("\n");
-  const options = { year: "numeric", month: "short", timeZone: "UTC" };
+  const descItems = props.description.split('\n');
+  const options = { year: 'numeric', month: 'short', timeZone: 'UTC' };
   let modal = null;
   const display = {
-    title: "",
-    org: "",
+    title: '',
+    org: '',
     tags: [],
   };
 
   switch (props.type) {
-    case "positions":
+    case 'positions':
       modal = ExperienceModal;
       display.title = props.title;
       display.org = props.company;
       display.tags = props.tags;
       break;
-    case "education":
+    case 'education':
       modal = EducationModal;
       display.title = `${props.degree}, ${props.major}`;
       display.org = props.school;
       display.tags = props.tags;
       break;
-    case "projects":
+    case 'projects':
       modal = ProjectsModal;
       display.title = props.name;
       display.tags = props.tags;
@@ -53,11 +53,22 @@ function Position({
   info.startMonth = startDate.getUTCMonth() + 1;
   info.startYear = startDate.getUTCFullYear();
 
-  if (endDate) {
-    info.endMonth = endDate.getUTCMonth() + 1;
-    info.endYear = endDate.getUTCFullYear();
+  let hasEndDate;
+  if (info.hasEndDate === undefined) {
+    hasEndDate = true;
+  } else if (info.hasEndDate === null) {
+    hasEndDate = false;
   } else {
-    info.current = true;
+    hasEndDate = info.hasEndDate;
+  }
+
+  if (hasEndDate) {
+    if (endDate) {
+      info.endMonth = endDate.getUTCMonth() + 1;
+      info.endYear = endDate.getUTCFullYear();
+    } else {
+      info.current = true;
+    }
   }
 
   return (
@@ -78,17 +89,19 @@ function Position({
           <div className="position-info">
             <span className="position-title">
               {display.title}
-              {props.type !== "projects" && " at "}
+              {props.type !== 'projects' && ' at '}
             </span>
 
             <span className="position-org">{display.org}</span>
           </div>
           <div className="position-dates">
-            {`${startDate.toLocaleDateString(undefined, options)} - ${
-              endDate
-                ? endDate.toLocaleDateString(undefined, options)
-                : "Present"
-            }`}
+            {startDate.toLocaleDateString(undefined, options)}
+            {hasEndDate &&
+              `${` - ${
+                endDate
+                  ? endDate.toLocaleDateString(undefined, options)
+                  : 'Present'
+              }`}`}
           </div>
           {display.tags.map((item) => (
             <Tag key={item}>{item}</Tag>
