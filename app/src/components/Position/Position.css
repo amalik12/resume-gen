@@ -4,6 +4,10 @@
     padding-top: 35px;
 }
 
+.hidden {
+    opacity: 0.5;
+}
+
 .Position:hover .edit-icon {
     opacity: 1;
 }
@@ -54,4 +58,10 @@
     position: absolute;
     top: 25px;
     right: 0px;
+}
+
+.position-hide-button {
+    position: absolute;
+    top: 25px;
+    right: 47px;
 }

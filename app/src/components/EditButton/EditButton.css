@@ -6,13 +6,9 @@
     padding: 15px;
     border-radius: 50%;
     cursor: pointer;
+    background: #eee;
 }
 
 .edit-icon:hover {
-    background: #eee;
-    opacity: 1;
-}
-
-.edit-icon.active {
     background: rgb(212, 212, 212);
 }

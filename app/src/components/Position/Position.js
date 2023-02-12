@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Position.css';
 import Tag from '../Tag';
 import EditButton from '../EditButton';
@@ -16,8 +16,10 @@ function Position({
   createdAt,
   updatedAt,
   updateData,
+  hiddenIds,
   ...props
 }) {
+  const [hidden, setHidden] = useState(false);
   const descItems = props.description.split('\n');
   const options = { year: 'numeric', month: 'short', timeZone: 'UTC' };
   let modal = null;
@@ -26,6 +28,14 @@ function Position({
     org: '',
     tags: [],
   };
+
+  useEffect(() => {
+    if (!hidden) {
+      hiddenIds.current.delete(id);
+    } else {
+      hiddenIds.current.add(id);
+    }
+  }, [hidden, id, hiddenIds]);
 
   switch (props.type) {
     case 'positions':
@@ -74,7 +84,7 @@ function Position({
   return (
     <ModalConsumer>
       {({ showModal }) => (
-        <div className="Position">
+        <div className={`Position ${hidden ? 'hidden' : ''}`}>
           <EditButton
             className="position-edit-button"
             onClick={() =>
@@ -85,6 +95,11 @@ function Position({
                 updateData,
               })
             }
+          />
+          <EditButton
+            className="position-hide-button"
+            onClick={() => setHidden((prevHidden) => !prevHidden)}
+            icon={hidden ? 'fas fa-eye' : 'fas fa-eye-slash'}
           />
           <div className="position-info">
             <span className="position-title">

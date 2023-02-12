@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import "./Category.css";
-import Position from "../Position/Position";
-import { ModalContext } from "../ModalProvider/ModalProvider";
-import ExperienceModal from "../ExperienceModal";
-import EducationModal from "../EducationModal";
-import ProjectsModal from "../ProjectsModal/ProjectsModal";
+import React, { useEffect } from 'react';
+import './Category.css';
+import Position from '../Position/Position';
+import { ModalContext } from '../ModalProvider/ModalProvider';
+import ExperienceModal from '../ExperienceModal';
+import EducationModal from '../EducationModal';
+import ProjectsModal from '../ProjectsModal/ProjectsModal';
 
-function Category({ catTitle, items, setItems }) {
+function Category({ catTitle, items, setItems, hiddenIds }) {
   useEffect(() => {
     fetch(`/api/v1/${catTitle}`)
       .then((result) => result.json())
@@ -27,7 +27,7 @@ function Category({ catTitle, items, setItems }) {
       {({ showModal }) => (
         <div className="Category">
           <div className="category-title">
-            <span>{catTitle === "positions" ? "experience" : catTitle}</span>
+            <span>{catTitle === 'positions' ? 'experience' : catTitle}</span>
             <i
               className="add-icon fa-solid fa-plus"
               onClick={() =>
@@ -63,6 +63,7 @@ function Category({ catTitle, items, setItems }) {
                   updateData={setItems}
                   {...newProps}
                   type={catTitle}
+                  hiddenIds={hiddenIds}
                 />
               );
             })}
