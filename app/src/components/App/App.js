@@ -8,8 +8,9 @@ import ProfileInfo from '../ProfileInfo';
 import Category from '../Category';
 import Button from '../Button';
 import docDefinition from '../../doc-definition';
+import newVfsFonts from '../../vfs_fonts';
 
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+pdfMake.vfs = newVfsFonts.pdfMake.vfs;
 
 function App() {
   const [positions, setPositions] = useState([]);
@@ -27,6 +28,16 @@ function App() {
     github: 'amalik12',
   };
 
+  console.log(process.env.PUBLIC_URL);
+  const fonts = {
+    Lato: {
+      normal: `Lato-Regular.ttf`,
+      bold: `Lato-Bold.ttf`,
+      italics: `Lato-Italic.ttf`,
+      bolditalics: `Lato-Black.ttf`,
+    },
+  };
+
   const generateResume = () => {
     pdfMake
       .createPdf(
@@ -35,7 +46,9 @@ function App() {
           positions.filter((value) => !hiddenPositions.current.has(value.id)),
           education.filter((value) => !hiddenEducation.current.has(value.id)),
           projects.filter((value) => !hiddenProjects.current.has(value.id))
-        )
+        ),
+        null,
+        fonts
       )
       .open();
   };

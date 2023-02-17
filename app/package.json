@@ -30,6 +30,9 @@
       "prettier",
       "react"
     ],
+    "ignorePatterns":[
+      "*vfs*"
+    ],
     "rules": {
       "prettier/prettier": [
         "error",
