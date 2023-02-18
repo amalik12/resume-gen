@@ -50,6 +50,7 @@ function Category({ catTitle, items, setItems, hiddenIds }) {
                 key={item.id}
                 startDate={start}
                 endDate={end}
+                catTitle={catTitle}
                 updateData={setItems}
                 {...newProps}
                 type={catTitle}

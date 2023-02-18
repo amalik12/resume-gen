@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
 import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
 import ModalProvider from '../ModalProvider';
 import ModalRoot from '../ModalRoot';
 import ProfileInfo from '../ProfileInfo';
@@ -16,9 +15,16 @@ function App() {
   const [positions, setPositions] = useState([]);
   const [education, setEducation] = useState([]);
   const [projects, setProjects] = useState([]);
-  const hiddenPositions = useRef(new Set());
-  const hiddenEducation = useRef(new Set());
-  const hiddenProjects = useRef(new Set());
+
+  const hiddenPositions = useRef(
+    new Set(JSON.parse(localStorage.getItem('positions-hidden')))
+  );
+  const hiddenEducation = useRef(
+    new Set(JSON.parse(localStorage.getItem('education-hidden')))
+  );
+  const hiddenProjects = useRef(
+    new Set(JSON.parse(localStorage.getItem('projects-hidden')))
+  );
 
   const bio = {
     name: 'Adisa Malik',

@@ -17,9 +17,10 @@ function Position({
   updatedAt,
   updateData,
   hiddenIds,
+  catTitle,
   ...props
 }) {
-  const [hidden, setHidden] = useState(false);
+  const [hidden, setHidden] = useState(hiddenIds.current.has(id));
   const descItems = props.description.split('\n');
   const options = { year: 'numeric', month: 'short', timeZone: 'UTC' };
   let modal = null;
@@ -35,6 +36,10 @@ function Position({
     } else {
       hiddenIds.current.add(id);
     }
+    localStorage.setItem(
+      `${catTitle}-hidden`,
+      JSON.stringify([...hiddenIds.current])
+    );
   }, [hidden, id, hiddenIds]);
 
   switch (props.type) {
