@@ -1,50 +1,51 @@
-import React from "react";
-import { Formik, Form } from "formik";
-import TextField from "../TextField";
-import SelectField from "../SelectField";
-import TagInput from "../TagInput";
-import TextBox from "../TextBox";
-import Modal from "../Modal";
-import FormFooter from "../FormFooter";
-import { ModalContext } from "../ModalProvider/ModalProvider";
-import { ProjectSchema } from "../../form-schemas";
-import { updateItem, createItem, deleteItem } from "../../db-actions";
-import CheckField from "../CheckField";
+import React from 'react';
+import { Formik, Form } from 'formik';
+import TextField from '../TextField';
+import SelectField from '../SelectField';
+import TagInput from '../TagInput';
+import TextBox from '../TextBox';
+import Modal from '../Modal';
+import FormFooter from '../FormFooter';
+import { ModalContext } from '../ModalProvider/ModalProvider';
+import { ProjectSchema } from '../../form-schemas';
+import { updateItem, createItem, deleteItem } from '../../db-actions';
+import CheckField from '../CheckField';
 
 const ModalConsumer = ModalContext.Consumer;
 
 function ProjectsModal({ edit, initial, updateData, id }) {
   const months = [
-    "Month",
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    'Month',
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
 
   let initialValues = {
-    name: "",
-    website: "",
+    name: '',
+    website: '',
     startMonth: 0,
-    startYear: "",
+    startYear: '',
     endMonth: 0,
-    endYear: "",
+    endYear: '',
     hasEndDate: false,
     current: false,
-    description: "",
+    description: '',
     tags: [],
   };
 
   if (initial !== undefined) {
     initialValues = { ...initialValues, ...initial };
+    initialValues.hasEndDate = initial.hasEndDate || false;
   }
 
   return (
@@ -53,7 +54,7 @@ function ProjectsModal({ edit, initial, updateData, id }) {
         <Modal
           showModal={isOpen}
           submitted={false}
-          title={`${edit ? "Edit" : "Add"} Project`}
+          title={`${edit ? 'Edit' : 'Add'} Project`}
         >
           <Formik
             initialValues={initialValues}
@@ -75,7 +76,7 @@ function ProjectsModal({ edit, initial, updateData, id }) {
 
               if (edit) {
                 output.id = id;
-                updateItem(id, "projects", output).then((result) => {
+                updateItem(id, 'projects', output).then(() => {
                   updateData((prevData) =>
                     prevData.map((item) => {
                       if (item.id === id) return output;
@@ -86,7 +87,7 @@ function ProjectsModal({ edit, initial, updateData, id }) {
                   hideModal();
                 });
               } else {
-                createItem("projects", output).then((result) => {
+                createItem('projects', output).then((result) => {
                   updateData((prevData) => [...prevData, result]);
                   actions.setSubmitting(false);
                   hideModal();
@@ -104,7 +105,7 @@ function ProjectsModal({ edit, initial, updateData, id }) {
                     </div>
                     <div className="form-row">
                       <SelectField
-                        name={values.hasEndDate ? "Start date" : "Release date"}
+                        name={values.hasEndDate ? 'Start date' : 'Release date'}
                         id="startMonth"
                         options={months}
                       />
@@ -156,7 +157,7 @@ function ProjectsModal({ edit, initial, updateData, id }) {
                   delete={edit}
                   hide={hideModal}
                   onDelete={() =>
-                    deleteItem(id, "projects").then((result) => {
+                    deleteItem(id, 'projects').then(() => {
                       updateData((prevData) =>
                         prevData.filter((item) => item.id !== id)
                       );
