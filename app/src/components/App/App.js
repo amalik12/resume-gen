@@ -26,14 +26,14 @@ function App() {
     new Set(JSON.parse(localStorage.getItem('projects-hidden')))
   );
 
-  const bio = {
+  const [bio, setBio] = useState({
     name: 'Adisa Malik',
     website: 'http://adisamalik.com',
     email: 'adisamalik@gmail.com',
     location: 'New York, NY',
     github: 'amalik12',
     gitlab: 'wowza',
-  };
+  });
 
   const fonts = {
     Lato: {
@@ -72,6 +72,9 @@ function App() {
             name={bio.name}
             website={bio.website}
             email={bio.email}
+            location={bio.location}
+            github={bio.github}
+            setBio={setBio}
           />
           <div className="profile-details">
             <Category
