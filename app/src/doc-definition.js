@@ -1,5 +1,6 @@
 const options = { year: 'numeric', month: 'short', timeZone: 'UTC' };
 export default (bio, experience, education, projects) => ({
+  pageMargins: 30,
   content: [
     {
       columns: [
@@ -15,21 +16,27 @@ export default (bio, experience, education, projects) => ({
             alignment: 'right',
             decoration: 'underline',
           },
+          // {
+          //   text: bio.website,
+          //   link: bio.website,
+          //   alignment: 'right',
+          //   decoration: 'underline',
+          // },
           {
-            text: bio.website,
-            link: bio.website,
+            text: `github.com/${bio.github}`,
+            link: `https://github.com/${bio.github}`,
             alignment: 'right',
             decoration: 'underline',
           },
           {
-            text: bio.github,
-            link: bio.github,
+            text: `gitlab.com/${bio.gitlab}`,
+            link: `https://gitlab.com/${bio.gitlab}`,
             alignment: 'right',
             decoration: 'underline',
           },
         ],
       ],
-      margin: [0, 10, 0, 5],
+      margin: [0, 0, 0, 5],
     },
     {
       columns: [
@@ -40,7 +47,7 @@ export default (bio, experience, education, projects) => ({
                 {
                   type: 'rect',
                   x: 0,
-                  y: 0,
+                  y: -0.5,
                   w: 10,
                   h: 0.7,
                   color: '#000000',
@@ -62,7 +69,7 @@ export default (bio, experience, education, projects) => ({
                 type: 'rect',
                 x: 0,
                 y: 0,
-                w: 415,
+                w: 435,
                 h: 1.7,
                 color: '#000000',
               },
@@ -91,7 +98,7 @@ export default (bio, experience, education, projects) => ({
               {
                 style: 'list',
                 ul: exp.description.split('\n'),
-                margin: [0, 0, 0, 10],
+                margin: [12, 0, 0, 10],
               },
             ];
           }),
@@ -129,7 +136,7 @@ export default (bio, experience, education, projects) => ({
                 type: 'rect',
                 x: 0,
                 y: 0,
-                w: 415,
+                w: 435,
                 h: 1.7,
                 color: '#000000',
               },
@@ -194,37 +201,53 @@ export default (bio, experience, education, projects) => ({
                 type: 'rect',
                 x: 0,
                 y: 0,
-                w: 415,
+                w: 435,
                 h: 1.7,
                 color: '#000000',
               },
             ],
             margin: [0, 10, 0, 6],
           },
-          ...projects.map((exp) => [
-            {
-              text: [
-                { text: exp.name, style: 'position' },
-                {
-                  text: ' - ',
-                  style: 'company',
-                },
-                {
-                  text: exp.website,
-                  link: exp.website,
-                  decoration: 'underline',
-                  style: 'company',
-                },
-              ],
-            },
-            { text: exp.date, style: 'date' },
-            { text: exp.tags.join(', '), style: 'skills' },
-            {
-              style: 'list',
-              ul: exp.description.split('\n'),
-              margin: [0, 0, 0, 10],
-            },
-          ]),
+          ...projects.map((exp) => {
+            const start = new Date(exp.startDate);
+            const end = exp.endDate ? new Date(exp.endDate) : null;
+            return [
+              {
+                text: [
+                  { text: exp.name, style: 'company' },
+                  {
+                    text: ' / ',
+                    style: 'position',
+                  },
+                  {
+                    text: exp.website,
+                    link: exp.website,
+                    decoration: 'underline',
+                    style: 'position',
+                  },
+                ],
+                margin: [0, 0, 0, 2],
+              },
+              {
+                text: `${start.toLocaleDateString(undefined, options)}${
+                  exp.hasEndDate
+                    ? ` - ${
+                        end
+                          ? end.toLocaleDateString(undefined, options)
+                          : 'Present'
+                      }`
+                    : ''
+                }`,
+                style: 'date',
+              },
+              { text: exp.tags.join(', '), style: 'skills' },
+              {
+                style: 'list',
+                ul: exp.description.split('\n'),
+                margin: [12, 0, 0, 10],
+              },
+            ];
+          }),
         ],
       ],
     },
@@ -236,7 +259,7 @@ export default (bio, experience, education, projects) => ({
   styles: {
     title: {
       fontSize: 20,
-      color: '#3065c7',
+      bold: true,
     },
     header: {
       fontSize: 9,

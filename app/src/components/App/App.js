@@ -26,9 +26,9 @@ function App() {
     email: 'adisamalik@gmail.com',
     location: 'New York, NY',
     github: 'amalik12',
+    gitlab: 'wowza',
   };
 
-  console.log(process.env.PUBLIC_URL);
   const fonts = {
     Lato: {
       normal: `Lato-Regular.ttf`,
