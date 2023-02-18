@@ -47,7 +47,7 @@ export default (bio, experience, education, projects) => ({
                 {
                   type: 'rect',
                   x: 0,
-                  y: -0.5,
+                  y: 0,
                   w: 10,
                   h: 0.7,
                   color: '#000000',
