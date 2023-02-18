@@ -97,12 +97,37 @@ app.delete('/api/v1/education/:id', function(req, res){
     })
 })
 
-app.get('/api/v1/projects', function(req, res){
-  Project.findAll({ order: [['startDate', 'DESC']] }).then(projects => res.send(projects))
-    .catch(err => {
+app.get('/api/v1/projects', async (req, res) => {
+  try {
+  const projects = await Project.findAll()
+  
+  return res.send(projects.sort(
+    (a, b) => {
+      if (a.hasEndDate) {
+        if (b.hasEndDate) {
+          if (!a.endDate) {
+            if (!b.endDate) {
+              return new Date(b.startDate) - new Date(a.startDate)
+            }
+            return -1
+          }
+          if (!b.endDate) {
+            return 1
+          }
+          return new Date(b.endDate) - new Date(a.endDate)
+        }
+        return -1
+      }
+      if (b.hasEndDate) {
+        return 1
+      }
+      return new Date(b.startDate) - new Date(a.startDate)
+    }
+  ));
+  } catch (err) {
       console.error(err);
       return res.sendStatus(500);
-    })
+    }
 })
 
 app.post('/api/v1/projects', function(req, res){

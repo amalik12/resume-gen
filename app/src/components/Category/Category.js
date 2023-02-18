@@ -38,35 +38,25 @@ function Category({ catTitle, items, setItems, hiddenIds }) {
               }
             />
           </div>
-          {items
-            .sort((a, b) => {
-              if (a.startDate === b.startDate) {
-                return 0;
-              }
-              if (a.startDate < b.startDate) {
-                return 1;
-              }
-              return -1;
-            })
-            .map((item) => {
-              const { startDate, endDate, ...newProps } = item;
-              const start = new Date(item.startDate);
-              let end = null;
-              if (item.endDate != null) {
-                end = new Date(item.endDate);
-              }
-              return (
-                <Position
-                  key={item.id}
-                  startDate={start}
-                  endDate={end}
-                  updateData={setItems}
-                  {...newProps}
-                  type={catTitle}
-                  hiddenIds={hiddenIds}
-                />
-              );
-            })}
+          {items.map((item) => {
+            const { startDate, endDate, ...newProps } = item;
+            const start = new Date(item.startDate);
+            let end = null;
+            if (item.endDate != null) {
+              end = new Date(item.endDate);
+            }
+            return (
+              <Position
+                key={item.id}
+                startDate={start}
+                endDate={end}
+                updateData={setItems}
+                {...newProps}
+                type={catTitle}
+                hiddenIds={hiddenIds}
+              />
+            );
+          })}
         </div>
       )}
     </ModalConsumer>
