@@ -127,6 +127,7 @@
   right: 0;
   left: initial;
   top: -27px;
+  bottom: unset;
 }
 
 .textfield.large .textfield-error {
